@@ -38,8 +38,9 @@ public class AlumnoController {
 			alumnos.add(alumno);
 		}
 
+		int total = 1;
+		
 		for (Alumnos alumno : alumnos) {
-			int total = 1;
 			System.out.println(total + ". Alumno: " + alumno.getName() + ", Edad: " + alumno.getAge());
 			total++;
 		}
@@ -100,6 +101,33 @@ public class AlumnoController {
 				return;
 			}
 		}
+	}
+
+	public void viewAlumnoByName() throws InterruptedException, ExecutionException {
+		List<Alumnos> alumnos = new ArrayList<>();
+
+		System.out.println("Introduce el nombre del alumno a buscar:");
+		nombre = sc.nextLine();
+
+		QuerySnapshot querySnapshot = db.collection("alumnos").whereEqualTo("name", nombre).get().get();
+
+		for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+
+			String name = doc.getString("name");
+			Long ageLong = doc.getLong("age");
+			int age = ageLong != null ? ageLong.intValue() : 0;
+
+			Alumnos alumno = new Alumnos(name, age);
+			alumnos.add(alumno);
+		}
+		
+		int total = 1;
+
+		for (Alumnos alumno : alumnos) {
+			System.out.println(total + ". Alumno: " + alumno.getName() + ", Edad: " + alumno.getAge());
+			total++;
+		}
+		return;
 	}
 
 }

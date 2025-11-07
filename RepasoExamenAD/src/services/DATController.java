@@ -73,8 +73,8 @@ public class DATController {
 				if (item instanceof Alumnos) {
 					alumnos.add((Alumnos) item);
 				} else {
-					System.err.println("[WARN] Elemento inesperado en DAT: " +
-						(item == null ? "null" : item.getClass().getName()));
+					System.err.println("[WARN] Elemento inesperado en DAT: "
+							+ (item == null ? "null" : item.getClass().getName()));
 				}
 			}
 
@@ -86,4 +86,47 @@ public class DATController {
 			System.err.println("Error al leer el DAT: " + e.getMessage());
 		}
 	}
+
+	public void readFromDATByName() {
+		System.out.print("Introduce el nombre del alumno a buscar: ");
+		String nombreBuscado = sc.nextLine().trim();
+
+		if (!file.exists() || file.length() == 0) {
+			System.err.println("[ERROR] No hay archivo DAT disponible");
+			return;
+		}
+
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+			Object obj = ois.readObject();
+			if (!(obj instanceof List<?>)) {
+				System.err.println("[ERROR] El contenido del DAT no es una lista");
+				return;
+			}
+
+			List<?> rawList = (List<?>) obj;
+			List<Alumnos> alumnosEncontrados = new ArrayList<>();
+
+			for (Object item : rawList) {
+				if (item instanceof Alumnos) {
+					Alumnos a = (Alumnos) item;
+					if (a.getName().equalsIgnoreCase(nombreBuscado)) {
+						alumnosEncontrados.add(a);
+					}
+				}
+			}
+
+			if (alumnosEncontrados.isEmpty()) {
+				System.out.println("No se ha encontrado ningún alumno con el nombre '" + nombreBuscado + "'.");
+			} else {
+				System.out.println("Alumnos encontrados con el nombre '" + nombreBuscado + "':");
+				for (Alumnos a : alumnosEncontrados) {
+					System.out.println(" - " + a.getName() + " (" + a.getAge() + " años)");
+				}
+			}
+
+		} catch (Exception e) {
+			System.err.println("[ERROR] Error al leer el archivo DAT: " + e.getMessage());
+		}
+	}
+
 }

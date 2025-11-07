@@ -13,6 +13,7 @@ import org.xml.sax.SAXException;
 import services.AlumnoController;
 import services.DATController;
 import services.XMLController;
+import view.FirstView;
 
 public class Main {
 
@@ -34,12 +35,15 @@ public class Main {
 			System.out.println("2. Añadir Alumno");
 			System.out.println("3. Editar Alumno");
 			System.out.println("4. Eliminar Alumno");
-			System.out.println("5. Guardar en XML");
-			System.out.println("6. Leer desde XML");
-			System.out.println("7. Guardar en DAT");
-			System.out.println("8. Leer desde DAT");
-			System.out.println("9. Abrir vista grafica");
-			System.out.println("10. Salir");
+			System.out.println("5. Ver usuario por nombre");
+			System.out.println("6. Guardar en XML");
+			System.out.println("7. Leer desde XML");
+			System.out.println("8. Leer desde XML por nombre");
+			System.out.println("9. Guardar en DAT");
+			System.out.println("10. Leer desde DAT");
+			System.out.println("11. Leer desde DAT por nombre");
+			System.out.println("12. Abrir vista grafica");
+			System.out.println("13. Salir");
 			opcion = sc.nextInt();
 
 			switch (opcion) {
@@ -55,22 +59,33 @@ public class Main {
 			case 4:
 				AlumnoController.deleteAlumno();
 				break;
+
 			case 5:
-				XMLController.saveToXML();
+				AlumnoController.viewAlumnoByName();
 				break;
 			case 6:
-				XMLController.readFromXML();
+				XMLController.saveToXML();
 				break;
 			case 7:
-				DATController.saveToDAT();
+				XMLController.readFromXML();
 				break;
 			case 8:
-				DATController.readFromDAT();
+				XMLController.readFromXMLByName();
 				break;
 			case 9:
-				view.FirstView.main(null);
+				DATController.saveToDAT();
 				break;
 			case 10:
+				DATController.readFromDAT();
+				break;
+			case 11:
+				DATController.readFromDATByName();
+				break;
+			case 12:
+				FirstView view = new FirstView();
+				view.setVisible(true);
+				break;
+			case 13:
 				System.out.println("Saliendo...");
 				break;
 			default:
@@ -78,7 +93,7 @@ public class Main {
 				break;
 			}
 
-		} while (opcion != 10);
+		} while (opcion != 13);
 
 		sc.close();
 

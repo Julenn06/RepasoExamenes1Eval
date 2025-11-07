@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
@@ -120,4 +121,48 @@ public class XMLController {
 			System.out.println(" - " + a.getName() + " (" + a.getAge() + " años)");
 		}
 	}
+
+	public void readFromXMLByName() throws SAXException, IOException, ParserConfigurationException {
+		if (!file.exists() || file.length() == 0) {
+			System.err.println("[ERROR] No hay archivo XML disponible");
+			return;
+		}
+
+		System.out.print("Introduce el nombre del alumno a buscar: ");
+		String name = sc.nextLine().trim();
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document doc = builder.parse(file);
+		doc.getDocumentElement().normalize();
+
+		NodeList listaAlumnos = doc.getElementsByTagName("Alumno");
+
+		List<Alumnos> alumnosEncontrados = new ArrayList<>();
+
+		for (int i = 0; i < listaAlumnos.getLength(); i++) {
+			Node nodo = listaAlumnos.item(i);
+
+			if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+				Element elemento = (Element) nodo;
+
+				String nombre = elemento.getElementsByTagName("Name").item(0).getTextContent();
+
+				if (nombre.equalsIgnoreCase(name)) {
+					int edad = Integer.parseInt(elemento.getElementsByTagName("Age").item(0).getTextContent());
+					alumnosEncontrados.add(new Alumnos(nombre, edad));
+				}
+			}
+		}
+
+		if (alumnosEncontrados.isEmpty()) {
+			System.out.println("No se ha encontrado ningún alumno con el nombre \"" + name + "\".");
+		} else {
+			System.out.println("Alumnos encontrados con el nombre \"" + name + "\":");
+			for (Alumnos a : alumnosEncontrados) {
+				System.out.println(" - " + a.getName() + " (" + a.getAge() + " años)");
+			}
+		}
+	}
+
 }
