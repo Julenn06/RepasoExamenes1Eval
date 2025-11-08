@@ -10,6 +10,7 @@ import {
 import {
   Observable
 } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prueba',
@@ -21,7 +22,7 @@ import {
 export class Prueba {
   data$ ? : Observable < any >
 
-    constructor(private jsonService: JsonService) {}
+    constructor(private jsonService: JsonService, private router: Router) {}
 
   leerTodo(): void {
     this.data$ = this.jsonService.getDb();
@@ -32,6 +33,10 @@ export class Prueba {
     const inputElement = document.getElementById('number') as HTMLInputElement;
     number = parseInt(inputElement?.value ?? '0', 10);
     this.data$ = this.jsonService.getDbById(number);
+  }
+
+  leerConJsonServer(): void {
+    this.router.navigate(['/leerServer']);
   }
 
 }

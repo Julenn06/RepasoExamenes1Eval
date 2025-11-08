@@ -1,0 +1,19 @@
+<button (click)="vertodos()">Ver todos</button>
+
+
+<div>
+    <input type="number" id="numeroHeroe">
+    <button (click)="verPorId()">Ver Por Id</button>
+</div>
+
+
+<div [hidden]="!loading">Cargando...</div>
+<div class="error" [hidden]="!error">{{ error }}</div>
+
+<ul [hidden]="!(heroes && heroes.length)">
+	<li *ngFor="let h of heroes">
+		<strong>{{ h.id }} - {{ h.name }}</strong>: {{ h.power }}
+	</li>
+</ul>
+
+<div [hidden]="loading || !(heroes && heroes.length === 0)">No hay héroes.</div>
