@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<header class="app-header">
+	<div class="header-inner">
+		<div class="brand">RepasoDI</div>
+		<nav class="nav">
+			<a routerLink="/first-view">Inicio</a>
+			<a routerLink="/login">Login</a>
+			<a routerLink="/register">Registro</a>
+		</nav>
+	</div>
+</header>
+
+<main class="app-main">
+	<div class="container">
+		<router-outlet></router-outlet>
+	</div>
+</main>

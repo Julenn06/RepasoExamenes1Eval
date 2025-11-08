@@ -1,0 +1,19 @@
+/* App layout: header / main / footer */
+header.app-header{background:var(--card); border-bottom:1px solid rgba(79,70,229,0.04); position:sticky; top:0; z-index:30}
+.header-inner{max-width:var(--max-width); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1rem}
+.brand{font-weight:700; color:var(--accent); font-size:1.05rem}
+.nav a{margin-left:1rem; color:var(--muted); font-weight:600}
+.nav a:hover{color:var(--accent)}
+
+main.app-main{padding:2rem 0}
+
+footer.app-footer{padding:1rem 0; color:var(--muted); text-align:center; font-size:0.95rem}
+
+/* page helpers */
+.start-screen{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; padding:3rem 1rem}
+.start-screen h1{margin:0; font-size:2rem}
+
+/* form base to override per-page when needed */
+.custom-form{max-width:480px; margin:2.5rem auto; padding:1.25rem; border-radius:12px}
+.form-row{margin-bottom:0.9rem}
+.form-actions{display:flex; gap:0.5rem; align-items:center}

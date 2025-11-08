@@ -1,0 +1,5 @@
+/* Reuse card/form styles from global, add small tweaks */
+.custom-form{background:var(--card); padding:1.25rem; border-radius:12px; box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+.custom-form h1{margin:0 0 1rem}
+.form-actions{display:flex; gap:0.75rem; align-items:center}
+.form-actions .secondary{display:inline-flex; align-items:center; padding:0.5rem 0.8rem; border-radius:8px}
