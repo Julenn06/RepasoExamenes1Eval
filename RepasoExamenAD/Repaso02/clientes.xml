@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ventas>
+	<venta id="1">
+		<cliente>Juan Pérez</cliente>
+		<fecha>2025-10-07</fecha>
+		<productos>
+			<producto>
+				<nombre>Camisa</nombre>
+				<precio>25.0</precio>
+				<cantidad>2</cantidad>
+			</producto>
+			<producto>
+				<nombre>Zapatos</nombre>
+				<precio>60.0</precio>
+				<cantidad>1</cantidad>
+			</producto>
+		</productos>
+	</venta>
+	<venta id="2">
+		<cliente>Ana Gómez</cliente>
+		<fecha>2025-10-06</fecha>
+		<productos>
+			<producto>
+				<nombre>Pantalón</nombre>
+				<precio>40.0</precio>
+				<cantidad>1</cantidad>
+			</producto>
+			<producto>
+				<nombre>Calcetines</nombre>
+				<precio>5.0</precio>
+				<cantidad>5</cantidad>
+			</producto>
+		</productos>
+	</venta>
+</ventas>
