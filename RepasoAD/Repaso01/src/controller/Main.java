@@ -13,7 +13,6 @@ import org.xml.sax.SAXException;
 import services.AlumnoController;
 import services.DATController;
 import services.XMLController;
-import view.FirstView;
 
 public class Main {
 
@@ -42,8 +41,7 @@ public class Main {
 			System.out.println("9. Guardar en DAT");
 			System.out.println("10. Leer desde DAT");
 			System.out.println("11. Leer desde DAT por nombre");
-			System.out.println("12. Abrir vista grafica");
-			System.out.println("13. Salir");
+			System.out.println("12. Salir");
 			opcion = sc.nextInt();
 
 			switch (opcion) {
@@ -82,10 +80,6 @@ public class Main {
 				DATController.readFromDATByName();
 				break;
 			case 12:
-				FirstView view = new FirstView();
-				view.setVisible(true);
-				break;
-			case 13:
 				System.out.println("Saliendo...");
 				break;
 			default:
@@ -93,7 +87,7 @@ public class Main {
 				break;
 			}
 
-		} while (opcion != 13);
+		} while (opcion != 12);
 
 		sc.close();
 
