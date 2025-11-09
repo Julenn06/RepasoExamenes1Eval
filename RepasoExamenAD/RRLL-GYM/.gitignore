@@ -1,0 +1,13 @@
+serviceAccountKey.json
+*.json
+
+backup.dat
+
+historic.xml
+
+offlineHistoric.xml
+
+user.dat
+
+bin/
+/target/
