@@ -1,4 +1,4 @@
-package services;
+package controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 
-import controller.DBConnection;
 import model.Alumnos;
 
 public class AlumnoController {

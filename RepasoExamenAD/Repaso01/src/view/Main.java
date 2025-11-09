@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,9 +10,10 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.xml.sax.SAXException;
 
-import services.AlumnoController;
-import services.DATController;
-import services.XMLController;
+import controller.AlumnoController;
+import controller.DBConnection;
+import controller.DATController;
+import controller.XMLController;
 
 public class Main {
 

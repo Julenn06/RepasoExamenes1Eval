@@ -1,4 +1,4 @@
-package services;
+package controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,20 +13,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class ReadByID {
+public class ReadByName {
 
 	Scanner sc = new Scanner(System.in);
 
 	private File file = new File("clientes.xml");
 
-	public void leerPorId() throws SAXException, IOException, ParserConfigurationException {
+	public void leerPorNombre() throws SAXException, IOException, ParserConfigurationException {
 		if (!file.exists() || file.length() == 0) {
 			System.err.println("[ERROR] No hay archivo XML disponible");
 			return;
 		}
 
-		System.out.println("Escribe el ID de la venta que quieres buscar:");
-		int idBuscado = sc.nextInt();
+		System.out.println("Escribe el Nombre de la persona que quieres buscar:");
+		String nombreBuscado = sc.nextLine().trim();
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		Document doc = factory.newDocumentBuilder().parse(file);
@@ -43,9 +43,9 @@ public class ReadByID {
 			Element venta = (Element) nodoVenta;
 			String id = venta.getAttribute("id");
 
-			if (Integer.parseInt(id) == idBuscado) {
+			String cliente = getTextContent(venta, "cliente");
+			if (cliente.equalsIgnoreCase(nombreBuscado)) {
 
-				String cliente = getTextContent(venta, "cliente");
 				String fecha = getTextContent(venta, "fecha");
 
 				System.out.println("Venta id=" + id + " - Cliente: " + cliente + ", Fecha: " + fecha);

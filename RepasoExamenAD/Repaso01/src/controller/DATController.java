@@ -1,4 +1,4 @@
-package services;
+package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +18,6 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 
-import controller.DBConnection;
 import model.Alumnos;
 
 public class DATController {

@@ -8,17 +8,17 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import controller.DBConnection;
-import services.ReadAll;
-import services.ReadByID;
-import services.ReadByName;
-import services.ReadByProductName;
+import controller.ReadAll;
+import controller.ReadByID;
+import controller.ReadByName;
+import controller.ReadByProductName;
 
 public class Main {
 
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 
 		Scanner sc = new Scanner(System.in);
-		
+
 		DBConnection.initialize();
 
 		ReadAll readAll = new ReadAll();

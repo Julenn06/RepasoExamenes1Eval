@@ -2,33 +2,50 @@ package model;
 
 import java.util.Date;
 
+/**
+ * Modelo de datos para Alumno Representa un registro en el archivo alumnos.dat
+ */
 public class Alumnos {
 
-	private String name;
-	private int age;
-	private Date birthDate;
+	private String nombre;
+	private int edad;
+	private Date fechaInscripcion;
 
-	public String getName() {
-		return name;
+	public Alumnos() {
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public Alumnos(String nombre, int edad, Date fechaInscripcion) {
+		this.nombre = nombre;
+		this.edad = edad;
+		this.fechaInscripcion = fechaInscripcion;
 	}
 
-	public int getAge() {
-		return age;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public int getEdad() {
+		return edad;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public Date getFechaInscripcion() {
+		return fechaInscripcion;
+	}
+
+	public void setFechaInscripcion(Date fechaInscripcion) {
+		this.fechaInscripcion = fechaInscripcion;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Alumno[nombre=%s, edad=%d, fechaInscripcion=%s]", nombre, edad, fechaInscripcion);
 	}
 }

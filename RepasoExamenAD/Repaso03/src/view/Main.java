@@ -1,440 +1,312 @@
 package view;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import controller.AlumnoController;
 import model.Alumnos;
 
+/**
+ * Vista (UI) para gestión de Alumnos con archivos DAT Arquitectura MVC - Solo
+ * maneja interfaz de usuario
+ */
 public class Main {
 
-	private static final Path DATA_PATH = Paths.get("alumnos.dat");
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+	private static AlumnoController alumnoCtrl = new AlumnoController();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		boolean running = true;
 
+		System.out.println("╔════════════════════════════════════════════════╗");
+		System.out.println("║  SISTEMA DE GESTIÓN DE ALUMNOS - REPASO03     ║");
+		System.out.println("║  Arquitectura MVC con archivos DAT (texto)     ║");
+		System.out.println("╚════════════════════════════════════════════════╝\n");
+
 		while (running) {
 			mostrarMenu();
-			System.out.print("Elige una opción: ");
+			System.out.print("➤ Elige una opción: ");
 			String opcion = sc.nextLine().trim();
 
 			switch (opcion) {
 			case "1":
-				leerDatos();
+				leerTodos();
 				break;
 			case "2":
-				leerPorID(sc);
+				buscarPorNombre(sc);
 				break;
 			case "3":
-				leerPorNombre(sc);
+				buscarPorNombreParcial(sc);
 				break;
 			case "4":
 				filtrarPorEdad(sc);
 				break;
 			case "5":
-				agregarRegistro(sc);
+				agregarAlumno(sc);
 				break;
 			case "6":
-				editarRegistro(sc);
+				editarAlumno(sc);
 				break;
 			case "7":
-				eliminarRegistro(sc);
+				eliminarAlumno(sc);
 				break;
 			case "8":
 				exportarDatos(sc);
 				break;
 			case "9":
-				System.out.println("Saliendo...");
+				System.out.println("\n👋 ¡Hasta luego!");
 				running = false;
 				break;
 			default:
-				System.out.println("Opción no válida. Intenta de nuevo.");
+				System.out.println("❌ Opción no válida. Intenta de nuevo.");
 			}
 
-			System.out.println();
+			if (running) {
+				System.out.println("\n" + "─".repeat(50));
+			}
 		}
 
 		sc.close();
 	}
 
 	private static void mostrarMenu() {
-		System.out.println("\nGestión de datos (.DAT / filtros / export)");
-		System.out.println("----------------------------------------");
-		System.out.println("1. Leer todos los datos");
-		System.out.println("2. Leer por ID (nombre exacto)");
-		System.out.println("3. Leer por nombre (búsqueda parcial)");
-		System.out.println("4. Filtrar por rango de edad");
-		System.out.println("5. Agregar nuevo registro");
-		System.out.println("6. Editar registro (por nombre)");
-		System.out.println("7. Eliminar registro (por nombre)");
-		System.out.println("8. Exportar datos (CSV / XML / DAT)");
-		System.out.println("9. Salir");
-		System.out.println("----------------------------------------");
+		System.out.println("\n╔════════════════════════════════════════════════╗");
+		System.out.println("║         GESTIÓN DE ALUMNOS (.DAT)              ║");
+		System.out.println("╚════════════════════════════════════════════════╝");
+		System.out.println("1. 📋 Ver todos los alumnos");
+		System.out.println("2. 🔍 Buscar por nombre exacto");
+		System.out.println("3. 🔎 Buscar por nombre (parcial)");
+		System.out.println("4. 🎂 Filtrar por rango de edad");
+		System.out.println("5. ➕ Agregar nuevo alumno");
+		System.out.println("6. ✏️  Editar alumno");
+		System.out.println("7. ❌ Eliminar alumno");
+		System.out.println("8. 📤 Exportar datos (CSV/XML/DAT)");
+		System.out.println("9. 🚪 Salir");
+		System.out.println("─".repeat(50));
 	}
 
-	// ---------- Operaciones sobre el archivo DAT (texto) ----------
-	private static void leerDatos() {
-		List<Alumnos> list = readAll();
-		if (list.isEmpty()) {
-			System.out.println("No hay registros en " + DATA_PATH.toAbsolutePath());
+	private static void leerTodos() {
+		System.out.println("\n📋 LISTADO COMPLETO DE ALUMNOS");
+		System.out.println("═".repeat(50));
+
+		List<Alumnos> alumnos = alumnoCtrl.leerTodos();
+		if (alumnos.isEmpty()) {
+			System.out.println("⚠️  No hay alumnos registrados.");
 			return;
 		}
-		System.out.println("Registros (formato: nombre;edad;dd/MM/yyyy):");
-		for (Alumnos a : list) {
-			System.out.println(formatAlumnoLine(a));
+
+		for (int i = 0; i < alumnos.size(); i++) {
+			Alumnos al = alumnos.get(i);
+			System.out.printf("\n[%d] 👤 %s\n", (i + 1), al.getNombre());
+			System.out.printf("    🎂 Edad: %d años\n", al.getEdad());
+			System.out.printf("    📅 Fecha inscripción: %s\n", SDF.format(al.getFechaInscripcion()));
+		}
+		System.out.println("\n✅ Total: " + alumnos.size() + " alumnos");
+	}
+
+	private static void buscarPorNombre(Scanner sc) {
+		System.out.print("\n🔍 Introduce el nombre exacto del alumno: ");
+		String nombre = sc.nextLine().trim();
+
+		Alumnos alumno = alumnoCtrl.buscarPorNombre(nombre);
+		if (alumno != null) {
+			System.out.println("\n✅ ALUMNO ENCONTRADO:");
+			System.out.println("═".repeat(50));
+			System.out.printf("👤 Nombre: %s\n", alumno.getNombre());
+			System.out.printf("🎂 Edad: %d años\n", alumno.getEdad());
+			System.out.printf("📅 Fecha inscripción: %s\n", SDF.format(alumno.getFechaInscripcion()));
+		} else {
+			System.out.println("❌ No se encontró ningún alumno con ese nombre.");
 		}
 	}
 
-	private static void leerPorID(Scanner sc) {
-		System.out.print("Introduce el nombre (ID) exacto: ");
-		String id = sc.nextLine().trim();
-		if (id.isEmpty()) {
-			System.out.println("Nombre vacío.");
-			return;
-		}
-		List<Alumnos> list = readAll();
-		for (Alumnos a : list) {
-			if (a.getName() != null && a.getName().equalsIgnoreCase(id)) {
-				System.out.println("Encontrado: " + formatAlumnoLine(a));
-				return;
-			}
-		}
-		System.out.println("No se encontró ningún registro con nombre '" + id + "'.");
-	}
+	private static void buscarPorNombreParcial(Scanner sc) {
+		System.out.print("\n🔎 Introduce parte del nombre: ");
+		String parte = sc.nextLine().trim();
 
-	private static void leerPorNombre(Scanner sc) {
-		System.out.print("Introduce nombre o fragmento a buscar: ");
-		String q = sc.nextLine().trim().toLowerCase();
-		if (q.isEmpty()) {
-			System.out.println("Consulta vacía.");
+		List<Alumnos> resultados = alumnoCtrl.buscarPorNombreParcial(parte);
+		if (resultados.isEmpty()) {
+			System.out.println("❌ No se encontraron alumnos que coincidan con '" + parte + "'.");
 			return;
 		}
-		List<Alumnos> list = readAll();
-		boolean any = false;
-		for (Alumnos a : list) {
-			if (a.getName() != null && a.getName().toLowerCase().contains(q)) {
-				System.out.println(formatAlumnoLine(a));
-				any = true;
-			}
+
+		System.out.println("\n✅ RESULTADOS DE BÚSQUEDA: " + resultados.size() + " alumno(s)");
+		System.out.println("═".repeat(50));
+		for (int i = 0; i < resultados.size(); i++) {
+			Alumnos al = resultados.get(i);
+			System.out.printf("\n[%d] 👤 %s\n", (i + 1), al.getNombre());
+			System.out.printf("    🎂 Edad: %d años\n", al.getEdad());
+			System.out.printf("    📅 Fecha inscripción: %s\n", SDF.format(al.getFechaInscripcion()));
 		}
-		if (!any)
-			System.out.println("No hay coincidencias para '" + q + "'.");
 	}
 
 	private static void filtrarPorEdad(Scanner sc) {
-		try {
-			System.out.print("Edad mínima: ");
-			int min = Integer.parseInt(sc.nextLine().trim());
-			System.out.print("Edad máxima: ");
-			int max = Integer.parseInt(sc.nextLine().trim());
-			if (min > max) {
-				System.out.println("Rango inválido: la mínima es mayor que la máxima.");
-				return;
-			}
-			List<Alumnos> list = readAll();
-			boolean any = false;
-			for (Alumnos a : list) {
-				if (a.getAge() >= min && a.getAge() <= max) {
-					System.out.println(formatAlumnoLine(a));
-					any = true;
-				}
-			}
-			if (!any)
-				System.out.println("No se encontraron alumnos en el rango " + min + " - " + max + ".");
-		} catch (NumberFormatException e) {
-			System.out.println("Entrada no válida para edad. Vuelve a intentarlo.");
-		}
-	}
+		System.out.print("\n🎂 Introduce edad mínima: ");
+		int edadMin = Integer.parseInt(sc.nextLine().trim());
+		System.out.print("🎂 Introduce edad máxima: ");
+		int edadMax = Integer.parseInt(sc.nextLine().trim());
 
-	private static void agregarRegistro(Scanner sc) {
-		try {
-			System.out.print("Nombre: ");
-			String name = sc.nextLine().trim();
-			if (name.isEmpty()) {
-				System.out.println("El nombre no puede quedar vacío.");
-				return;
-			}
-			if (name.contains(";")) {
-				System.out.println("El carácter ';' no está permitido en el nombre.");
-				return;
-			}
-			System.out.print("Edad: ");
-			int age = Integer.parseInt(sc.nextLine().trim());
-			System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
-			String fecha = sc.nextLine().trim();
-			Date bd = parseDateOrNull(fecha);
-			if (bd == null) {
-				System.out.println("Formato de fecha inválido. Usa dd/MM/yyyy.");
-				return;
-			}
-
-			Alumnos a = new Alumnos();
-			a.setName(name);
-			a.setAge(age);
-			a.setBirthDate(bd);
-
-			appendAlumno(a);
-			System.out.println("Registro agregado: " + formatAlumnoLine(a));
-		} catch (NumberFormatException e) {
-			System.out.println("Edad no válida.");
-		} catch (IOException e) {
-			System.out.println("Error al guardar: " + e.getMessage());
-		}
-	}
-
-	private static void editarRegistro(Scanner sc) {
-		System.out.print("Nombre del registro a editar: ");
-		String name = sc.nextLine().trim();
-		if (name.isEmpty()) {
-			System.out.println("Nombre vacío.");
-			return;
-		}
-		List<Alumnos> list = readAll();
-		Alumnos found = null;
-		for (Alumnos a : list) {
-			if (a.getName() != null && a.getName().equalsIgnoreCase(name)) {
-				found = a;
-				break;
-			}
-		}
-		if (found == null) {
-			System.out.println("No se encontró el registro con nombre '" + name + "'.");
+		List<Alumnos> resultados = alumnoCtrl.filtrarPorEdad(edadMin, edadMax);
+		if (resultados.isEmpty()) {
+			System.out.println("❌ No hay alumnos en el rango de edad " + edadMin + "-" + edadMax + " años.");
 			return;
 		}
 
-		System.out.println("Dejar campo vacío mantiene el valor actual.");
-		System.out.print("Nuevo nombre [" + found.getName() + "]: ");
-		String nn = sc.nextLine().trim();
-		if (!nn.isEmpty()) {
-			if (nn.contains(";")) {
-				System.out.println("El carácter ';' no está permitido en el nombre.");
-				return;
-			}
-			found.setName(nn);
+		System.out.printf("\n✅ ALUMNOS CON EDAD ENTRE %d Y %d AÑOS: %d alumno(s)\n", edadMin, edadMax,
+				resultados.size());
+		System.out.println("═".repeat(50));
+		for (int i = 0; i < resultados.size(); i++) {
+			Alumnos al = resultados.get(i);
+			System.out.printf("\n[%d] 👤 %s\n", (i + 1), al.getNombre());
+			System.out.printf("    🎂 Edad: %d años\n", al.getEdad());
+			System.out.printf("    📅 Fecha inscripción: %s\n", SDF.format(al.getFechaInscripcion()));
 		}
-		System.out.print("Nueva edad [" + found.getAge() + "]: ");
-		String ea = sc.nextLine().trim();
-		if (!ea.isEmpty()) {
+	}
+
+	private static void agregarAlumno(Scanner sc) {
+		System.out.println("\n➕ AGREGAR NUEVO ALUMNO");
+		System.out.println("═".repeat(50));
+
+		System.out.print("👤 Nombre completo: ");
+		String nombre = sc.nextLine().trim();
+
+		System.out.print("🎂 Edad: ");
+		int edad = Integer.parseInt(sc.nextLine().trim());
+
+		System.out.print("📅 Fecha inscripción (dd/MM/yyyy): ");
+		String fechaStr = sc.nextLine().trim();
+		Date fecha;
+		try {
+			fecha = SDF.parse(fechaStr);
+		} catch (Exception e) {
+			System.out.println("❌ Formato de fecha incorrecto.");
+			return;
+		}
+
+		Alumnos nuevoAlumno = new Alumnos(nombre, edad, fecha);
+		if (alumnoCtrl.crear(nuevoAlumno)) {
+			System.out.println("✅ Alumno agregado correctamente.");
+		} else {
+			System.out.println("❌ Error al agregar el alumno.");
+		}
+	}
+
+	private static void editarAlumno(Scanner sc) {
+		System.out.println("\n✏️  EDITAR ALUMNO");
+		System.out.println("═".repeat(50));
+
+		System.out.print("🔍 Nombre del alumno a editar: ");
+		String nombreViejo = sc.nextLine().trim();
+
+		Alumnos alumno = alumnoCtrl.buscarPorNombre(nombreViejo);
+		if (alumno == null) {
+			System.out.println("❌ No se encontró ningún alumno con ese nombre.");
+			return;
+		}
+
+		System.out.println("\n📝 Datos actuales:");
+		System.out.printf("   👤 Nombre: %s\n", alumno.getNombre());
+		System.out.printf("   🎂 Edad: %d años\n", alumno.getEdad());
+		System.out.printf("   📅 Fecha inscripción: %s\n", SDF.format(alumno.getFechaInscripcion()));
+
+		System.out.print("\n👤 Nuevo nombre (Enter para mantener): ");
+		String nuevoNombre = sc.nextLine().trim();
+		if (!nuevoNombre.isEmpty()) {
+			alumno.setNombre(nuevoNombre);
+		}
+
+		System.out.print("🎂 Nueva edad (Enter para mantener): ");
+		String edadStr = sc.nextLine().trim();
+		if (!edadStr.isEmpty()) {
+			alumno.setEdad(Integer.parseInt(edadStr));
+		}
+
+		System.out.print("📅 Nueva fecha (dd/MM/yyyy, Enter para mantener): ");
+		String fechaStr = sc.nextLine().trim();
+		if (!fechaStr.isEmpty()) {
 			try {
-				found.setAge(Integer.parseInt(ea));
-			} catch (NumberFormatException e) {
-				System.out.println("Edad no válida. Edición cancelada.");
-				return;
+				alumno.setFechaInscripcion(SDF.parse(fechaStr));
+			} catch (Exception e) {
+				System.out.println("⚠️  Formato de fecha incorrecto, se mantiene la fecha actual.");
 			}
-		}
-		System.out.print("Nueva fecha (dd/MM/yyyy) ["
-				+ (found.getBirthDate() == null ? "" : SDF.format(found.getBirthDate())) + "]: ");
-		String fd = sc.nextLine().trim();
-		if (!fd.isEmpty()) {
-			Date d = parseDateOrNull(fd);
-			if (d == null) {
-				System.out.println("Fecha inválida. Edición cancelada.");
-				return;
-			}
-			found.setBirthDate(d);
 		}
 
-		try {
-			writeAll(list);
-			System.out.println("Registro actualizado: " + formatAlumnoLine(found));
-		} catch (IOException e) {
-			System.out.println("Error al guardar cambios: " + e.getMessage());
+		if (alumnoCtrl.actualizar(nombreViejo, alumno)) {
+			System.out.println("✅ Alumno actualizado correctamente.");
+		} else {
+			System.out.println("❌ Error al actualizar el alumno.");
 		}
 	}
 
-	private static void eliminarRegistro(Scanner sc) {
-		System.out.print("Nombre del registro a eliminar: ");
-		String name = sc.nextLine().trim();
-		if (name.isEmpty()) {
-			System.out.println("Nombre vacío.");
+	private static void eliminarAlumno(Scanner sc) {
+		System.out.println("\n❌ ELIMINAR ALUMNO");
+		System.out.println("═".repeat(50));
+
+		System.out.print("🔍 Nombre del alumno a eliminar: ");
+		String nombre = sc.nextLine().trim();
+
+		Alumnos alumno = alumnoCtrl.buscarPorNombre(nombre);
+		if (alumno == null) {
+			System.out.println("❌ No se encontró ningún alumno con ese nombre.");
 			return;
 		}
-		List<Alumnos> list = readAll();
-		boolean removed = false;
-		Iterator<Alumnos> it = list.iterator();
-		while (it.hasNext()) {
-			Alumnos a = it.next();
-			if (a.getName() != null && a.getName().equalsIgnoreCase(name)) {
-				it.remove();
-				removed = true;
+
+		System.out.println("\n📝 Datos del alumno:");
+		System.out.printf("   👤 Nombre: %s\n", alumno.getNombre());
+		System.out.printf("   🎂 Edad: %d años\n", alumno.getEdad());
+		System.out.printf("   📅 Fecha inscripción: %s\n", SDF.format(alumno.getFechaInscripcion()));
+
+		System.out.print("\n⚠️  ¿Confirmas la eliminación? (S/N): ");
+		String confirmacion = sc.nextLine().trim().toUpperCase();
+
+		if (confirmacion.equals("S") || confirmacion.equals("SI")) {
+			if (alumnoCtrl.eliminar(nombre)) {
+				System.out.println("✅ Alumno eliminado correctamente.");
+			} else {
+				System.out.println("❌ Error al eliminar el alumno.");
 			}
-		}
-		if (!removed) {
-			System.out.println("No se encontró ningún registro con nombre '" + name + "'.");
-			return;
-		}
-		try {
-			writeAll(list);
-			System.out.println("Registro(s) eliminado(s) correctamente.");
-		} catch (IOException e) {
-			System.out.println("Error al guardar después de eliminar: " + e.getMessage());
+		} else {
+			System.out.println("❌ Operación cancelada.");
 		}
 	}
 
 	private static void exportarDatos(Scanner sc) {
-		System.out.println("Formatos disponibles: 1) CSV  2) XML  3) DAT (texto)");
-		System.out.print("Elige formato (1-3): ");
-		String opt = sc.nextLine().trim();
-		try {
-			switch (opt) {
-			case "1":
-				exportCSV();
-				break;
-			case "2":
-				exportXML();
-				break;
-			case "3":
-				exportDAT();
-				break;
-			default:
-				System.out.println("Opción de exportación no válida.");
+		System.out.println("\n📤 EXPORTAR DATOS");
+		System.out.println("═".repeat(50));
+		System.out.println("1. 📄 Exportar a CSV");
+		System.out.println("2. 📋 Exportar a XML");
+		System.out.println("3. 💾 Exportar a DAT (copia)");
+		System.out.print("➤ Elige formato: ");
+		String opcion = sc.nextLine().trim();
+
+		switch (opcion) {
+		case "1":
+			if (alumnoCtrl.exportarCSV("alumnos.csv")) {
+				System.out.println("✅ Datos exportados a 'alumnos.csv'");
+			} else {
+				System.out.println("❌ Error al exportar a CSV.");
 			}
-		} catch (IOException e) {
-			System.out.println("Error en exportación: " + e.getMessage());
-		}
-	}
-
-	// ---------- Helpers ----------
-	private static List<Alumnos> readAll() {
-		List<Alumnos> out = new ArrayList<>();
-		if (!Files.exists(DATA_PATH))
-			return out;
-		try {
-			List<String> lines = Files.readAllLines(DATA_PATH, StandardCharsets.UTF_8);
-			for (String l : lines) {
-				if (l.trim().isEmpty())
-					continue;
-				String[] p = l.split(";", -1);
-				Alumnos a = new Alumnos();
-				a.setName(p.length > 0 ? p[0] : "");
-				try {
-					a.setAge(p.length > 1 && !p[1].isEmpty() ? Integer.parseInt(p[1]) : 0);
-				} catch (NumberFormatException e) {
-					a.setAge(0);
-				}
-				if (p.length > 2 && !p[2].isEmpty()) {
-					Date d = parseDateOrNull(p[2]);
-					a.setBirthDate(d);
-				}
-				out.add(a);
+			break;
+		case "2":
+			if (alumnoCtrl.exportarXML("alumnos.xml")) {
+				System.out.println("✅ Datos exportados a 'alumnos.xml'");
+			} else {
+				System.out.println("❌ Error al exportar a XML.");
 			}
-		} catch (IOException e) {
-			System.out.println("Error leyendo " + DATA_PATH + ": " + e.getMessage());
-		}
-		return out;
-	}
-
-	private static void writeAll(List<Alumnos> list) throws IOException {
-		Path tmp = Paths.get(DATA_PATH.toString() + ".tmp");
-		try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(tmp, StandardCharsets.UTF_8,
-				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING))) {
-			for (Alumnos a : list)
-				pw.println(formatAlumnoLine(a));
-		}
-		Files.move(tmp, DATA_PATH, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
-	}
-
-	private static void appendAlumno(Alumnos a) throws IOException {
-		String line = formatAlumnoLine(a);
-		Files.write(DATA_PATH, (line + System.lineSeparator()).getBytes(StandardCharsets.UTF_8),
-				StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-	}
-
-	private static String formatAlumnoLine(Alumnos a) {
-		String fecha = a.getBirthDate() == null ? "" : SDF.format(a.getBirthDate());
-		return (a.getName() == null ? "" : a.getName()) + ";" + a.getAge() + ";" + fecha;
-	}
-
-	private static Date parseDateOrNull(String s) {
-		try {
-			return SDF.parse(s);
-		} catch (ParseException e) {
-			return null;
-		}
-	}
-
-	private static void exportCSV() throws IOException {
-		List<Alumnos> list = readAll();
-		if (list.isEmpty()) {
-			System.out.println("No hay datos para exportar.");
-			return;
-		}
-		Path out = Paths.get("alumnos_export.csv");
-		try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(out, StandardCharsets.UTF_8,
-				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING))) {
-			pw.println("nombre,edad,fecha");
-			for (Alumnos a : list) {
-				String f = a.getBirthDate() == null ? "" : SDF.format(a.getBirthDate());
-				pw.println(escapeCsv(a.getName()) + "," + a.getAge() + "," + escapeCsv(f));
+			break;
+		case "3":
+			if (alumnoCtrl.exportarDAT("alumnos_backup.dat")) {
+				System.out.println("✅ Datos exportados a 'alumnos_backup.dat'");
+			} else {
+				System.out.println("❌ Error al crear copia de seguridad.");
 			}
+			break;
+		default:
+			System.out.println("❌ Opción no válida.");
 		}
-		System.out.println("Exportado a " + out.toAbsolutePath());
 	}
-
-	private static void exportXML() throws IOException {
-		List<Alumnos> list = readAll();
-		if (list.isEmpty()) {
-			System.out.println("No hay datos para exportar.");
-			return;
-		}
-		Path out = Paths.get("alumnos_export.xml");
-		try (PrintWriter pw = new PrintWriter(Files.newBufferedWriter(out, StandardCharsets.UTF_8,
-				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING))) {
-			pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-			pw.println("<alumnos>");
-			for (Alumnos a : list) {
-				pw.println("  <alumno>");
-				pw.println("    <nombre>" + xmlEscape(a.getName()) + "</nombre>");
-				pw.println("    <edad>" + a.getAge() + "</edad>");
-				pw.println("    <fecha>" + (a.getBirthDate() == null ? "" : SDF.format(a.getBirthDate())) + "</fecha>");
-				pw.println("  </alumno>");
-			}
-			pw.println("</alumnos>");
-		}
-		System.out.println("Exportado a " + out.toAbsolutePath());
-	}
-
-	private static void exportDAT() throws IOException {
-		// El DAT textual será simplemente una copia del archivo de datos actual con
-		// otro nombre
-		if (!Files.exists(DATA_PATH)) {
-			System.out.println("No existe " + DATA_PATH + ". Nada que exportar.");
-			return;
-		}
-		Path out = Paths.get("alumnos_export.dat");
-		Files.copy(DATA_PATH, out, StandardCopyOption.REPLACE_EXISTING);
-		System.out.println("Exportado a " + out.toAbsolutePath());
-	}
-
-	private static String escapeCsv(String s) {
-		if (s == null)
-			return "";
-		String r = s.replace("\"", "\"\"");
-		if (r.contains(",") || r.contains("\n") || r.contains("\r"))
-			r = "\"" + r + "\"";
-		return r;
-	}
-
-	private static String xmlEscape(String s) {
-		if (s == null)
-			return "";
-		return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'",
-				"&apos;");
-	}
-
 }
