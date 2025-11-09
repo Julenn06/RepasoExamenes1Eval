@@ -54,7 +54,7 @@ public class Main {
 				menuBusquedasAvanzadas();
 				break;
 			case "0":
-				System.out.println("👋 ¡Hasta luego! Buena suerte en el examen.");
+				System.out.println("👋 ¡Hasta luego!");
 				running = false;
 				break;
 			default:
