@@ -394,4 +394,3 @@ mvn clean
 
 ---
 
-**¡Buena suerte en el examen! 🚀**
