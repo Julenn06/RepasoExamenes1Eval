@@ -7,6 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import controller.DBConnection;
 import services.ReadAll;
 import services.ReadByID;
 import services.ReadByName;
@@ -17,6 +18,8 @@ public class Main {
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 
 		Scanner sc = new Scanner(System.in);
+		
+		DBConnection.initialize();
 
 		ReadAll readAll = new ReadAll();
 		ReadByID readByID = new ReadByID();
