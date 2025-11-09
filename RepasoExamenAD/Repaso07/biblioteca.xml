@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+    <nombre>Biblioteca Central Municipal</nombre>
+    <direccion>Calle Mayor 123, Madrid</direccion>
+    <telefono>+34 91 123 4567</telefono>
+    <email>info@bibliotecacentral.es</email>
+    <anioFundacion>1925</anioFundacion>
+    
+    <!-- SECCIÓN DE AUTORES -->
+    <autores>
+        <autor id="A001">
+            <nombre>Gabriel García Márquez</nombre>
+            <nacionalidad>Colombiana</nacionalidad>
+            <fechaNacimiento>06/03/1927</fechaNacimiento>
+            <fechaFallecimiento>17/04/2014</fechaFallecimiento>
+            <generoLiterario>Realismo mágico</generoLiterario>
+            <premios>
+                <premio>
+                    <nombre>Premio Nobel de Literatura</nombre>
+                    <anio>1982</anio>
+                </premio>
+                <premio>
+                    <nombre>Premio Rómulo Gallegos</nombre>
+                    <anio>1972</anio>
+                </premio>
+            </premios>
+            <biografia>Escritor, novelista, cuentista y periodista colombiano. Considerado uno de los autores más significativos del siglo XX.</biografia>
+            <libros>
+                <libro id="L001">
+                    <titulo>Cien años de soledad</titulo>
+                    <isbn>978-0-307-47472-0</isbn>
+                    <anioPublicacion>1967</anioPublicacion>
+                    <editorial>Sudamericana</editorial>
+                    <numeroPaginas>417</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>29.95</precio>
+                    <stock>15</stock>
+                    <categoria>Novela</categoria>
+                    <valoracion>4.8</valoracion>
+                    <descripcion>Narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>El origen de Macondo</titulo>
+                            <paginas>35</paginas>
+                            <resumen>José Arcadio Buendía funda Macondo y comienza la saga familiar.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>La llegada de los gitanos</titulo>
+                            <paginas>28</paginas>
+                            <resumen>Melquíades trae inventos maravillosos al pueblo.</resumen>
+                        </capitulo>
+                        <capitulo numero="3">
+                            <titulo>Las guerras civiles</titulo>
+                            <paginas>42</paginas>
+                            <resumen>El coronel Aureliano Buendía participa en las guerras.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>María González</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>15/01/2024</fecha>
+                            <comentario>Obra maestra del realismo mágico. Imprescindible.</comentario>
+                        </resena>
+                        <resena>
+                            <usuario>Pedro Martínez</usuario>
+                            <puntuacion>4</puntuacion>
+                            <fecha>20/02/2024</fecha>
+                            <comentario>Excelente narrativa, aunque algo densa en algunos momentos.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+                <libro id="L002">
+                    <titulo>El amor en los tiempos del cólera</titulo>
+                    <isbn>978-0-307-38972-7</isbn>
+                    <anioPublicacion>1985</anioPublicacion>
+                    <editorial>Oveja Negra</editorial>
+                    <numeroPaginas>368</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>27.50</precio>
+                    <stock>12</stock>
+                    <categoria>Novela</categoria>
+                    <valoracion>4.6</valoracion>
+                    <descripcion>Historia de amor entre Florentino Ariza y Fermina Daza que dura más de cincuenta años.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>El primer encuentro</titulo>
+                            <paginas>40</paginas>
+                            <resumen>Florentino conoce a Fermina y se enamora perdidamente.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>Las cartas de amor</titulo>
+                            <paginas>35</paginas>
+                            <resumen>La correspondencia que sella su romance inicial.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Ana López</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>10/03/2024</fecha>
+                            <comentario>La mejor historia de amor que he leído jamás.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+            </libros>
+        </autor>
+        
+        <autor id="A002">
+            <nombre>Isabel Allende</nombre>
+            <nacionalidad>Chilena</nacionalidad>
+            <fechaNacimiento>02/08/1942</fechaNacimiento>
+            <generoLiterario>Realismo mágico</generoLiterario>
+            <premios>
+                <premio>
+                    <nombre>Premio Nacional de Literatura</nombre>
+                    <anio>2010</anio>
+                </premio>
+                <premio>
+                    <nombre>Hans Christian Andersen</nombre>
+                    <anio>2012</anio>
+                </premio>
+            </premios>
+            <biografia>Escritora chilena, considerada una de las más importantes de la literatura latinoamericana contemporánea.</biografia>
+            <libros>
+                <libro id="L003">
+                    <titulo>La casa de los espíritus</titulo>
+                    <isbn>978-8-401-01842-8</isbn>
+                    <anioPublicacion>1982</anioPublicacion>
+                    <editorial>Plaza &amp; Janés</editorial>
+                    <numeroPaginas>433</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>25.90</precio>
+                    <stock>20</stock>
+                    <categoria>Novela</categoria>
+                    <valoracion>4.7</valoracion>
+                    <descripcion>Saga familiar que abarca tres generaciones marcadas por acontecimientos extraordinarios.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>Rosa, la bella</titulo>
+                            <paginas>32</paginas>
+                            <resumen>La historia comienza con la hermosa Rosa del Valle.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>Las Tres Marías</titulo>
+                            <paginas>38</paginas>
+                            <resumen>Esteban Trueba construye su hacienda.</resumen>
+                        </capitulo>
+                        <capitulo numero="3">
+                            <titulo>Clara, clarividente</titulo>
+                            <paginas>45</paginas>
+                            <resumen>Clara y sus poderes paranormales.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Carlos Ruiz</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>05/04/2024</fecha>
+                            <comentario>Magnífica obra que mezcla historia y fantasía.</comentario>
+                        </resena>
+                        <resena>
+                            <usuario>Laura Sánchez</usuario>
+                            <puntuacion>4</puntuacion>
+                            <fecha>12/04/2024</fecha>
+                            <comentario>Muy buena, aunque algo larga en algunas partes.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+                <libro id="L004">
+                    <titulo>Paula</titulo>
+                    <isbn>978-8-401-37841-5</isbn>
+                    <anioPublicacion>1994</anioPublicacion>
+                    <editorial>Plaza &amp; Janés</editorial>
+                    <numeroPaginas>382</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>24.50</precio>
+                    <stock>8</stock>
+                    <categoria>Memorias</categoria>
+                    <valoracion>4.9</valoracion>
+                    <descripcion>Memoria íntima escrita durante la enfermedad de su hija Paula.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>El coma</titulo>
+                            <paginas>30</paginas>
+                            <resumen>Paula cae en coma y la autora comienza a escribir.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Sofía Jiménez</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>18/05/2024</fecha>
+                            <comentario>Conmovedora y hermosa. Me hizo llorar.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+            </libros>
+        </autor>
+        
+        <autor id="A003">
+            <nombre>Jorge Luis Borges</nombre>
+            <nacionalidad>Argentina</nacionalidad>
+            <fechaNacimiento>24/08/1899</fechaNacimiento>
+            <fechaFallecimiento>14/06/1986</fechaFallecimiento>
+            <generoLiterario>Fantástico</generoLiterario>
+            <premios>
+                <premio>
+                    <nombre>Premio Cervantes</nombre>
+                    <anio>1979</anio>
+                </premio>
+                <premio>
+                    <nombre>Premio Internacional de Editores</nombre>
+                    <anio>1961</anio>
+                </premio>
+            </premios>
+            <biografia>Escritor argentino, considerado una de las grandes figuras de la literatura universal.</biografia>
+            <libros>
+                <libro id="L005">
+                    <titulo>Ficciones</titulo>
+                    <isbn>978-0-802-13034-8</isbn>
+                    <anioPublicacion>1944</anioPublicacion>
+                    <editorial>Sur</editorial>
+                    <numeroPaginas>174</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>19.95</precio>
+                    <stock>25</stock>
+                    <categoria>Cuentos</categoria>
+                    <valoracion>4.9</valoracion>
+                    <descripcion>Colección de cuentos que exploran temas filosóficos y metafísicos.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>Tlön, Uqbar, Orbis Tertius</titulo>
+                            <paginas>18</paginas>
+                            <resumen>Descubrimiento de una enciclopedia sobre un mundo imaginario.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>La biblioteca de Babel</titulo>
+                            <paginas>14</paginas>
+                            <resumen>Una biblioteca infinita que contiene todos los libros posibles.</resumen>
+                        </capitulo>
+                        <capitulo numero="3">
+                            <titulo>El jardín de senderos que se bifurcan</titulo>
+                            <paginas>20</paginas>
+                            <resumen>Exploración del tiempo y las posibilidades infinitas.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Roberto Díaz</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>22/06/2024</fecha>
+                            <comentario>Genial. Cada cuento es una joya literaria.</comentario>
+                        </resena>
+                        <resena>
+                            <usuario>Elena Torres</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>28/06/2024</fecha>
+                            <comentario>Borges es un maestro absoluto del cuento.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+                <libro id="L006">
+                    <titulo>El Aleph</titulo>
+                    <isbn>978-8-420-63337-2</isbn>
+                    <anioPublicacion>1949</anioPublicacion>
+                    <editorial>Losada</editorial>
+                    <numeroPaginas>205</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>21.50</precio>
+                    <stock>18</stock>
+                    <categoria>Cuentos</categoria>
+                    <valoracion>4.8</valoracion>
+                    <descripcion>Colección de diecisiete cuentos que mezclan lo real con lo fantástico.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>El inmortal</titulo>
+                            <paginas>22</paginas>
+                            <resumen>La búsqueda de la Ciudad de los Inmortales.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>El Aleph</titulo>
+                            <paginas>16</paginas>
+                            <resumen>Un punto en el espacio que contiene todos los puntos.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Miguel Ángel Ruiz</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>30/07/2024</fecha>
+                            <comentario>Perfección literaria en cada página.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+            </libros>
+        </autor>
+        
+        <autor id="A004">
+            <nombre>Mario Vargas Llosa</nombre>
+            <nacionalidad>Peruana</nacionalidad>
+            <fechaNacimiento>28/03/1936</fechaNacimiento>
+            <generoLiterario>Realismo</generoLiterario>
+            <premios>
+                <premio>
+                    <nombre>Premio Nobel de Literatura</nombre>
+                    <anio>2010</anio>
+                </premio>
+                <premio>
+                    <nombre>Premio Cervantes</nombre>
+                    <anio>1994</anio>
+                </premio>
+                <premio>
+                    <nombre>Premio Planeta</nombre>
+                    <anio>1993</anio>
+                </premio>
+            </premios>
+            <biografia>Escritor, político y periodista peruano con nacionalidad española. Uno de los más importantes novelistas contemporáneos.</biografia>
+            <libros>
+                <libro id="L007">
+                    <titulo>La ciudad y los perros</titulo>
+                    <isbn>978-8-420-41205-7</isbn>
+                    <anioPublicacion>1963</anioPublicacion>
+                    <editorial>Seix Barral</editorial>
+                    <numeroPaginas>408</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>26.90</precio>
+                    <stock>14</stock>
+                    <categoria>Novela</categoria>
+                    <valoracion>4.5</valoracion>
+                    <descripcion>Crítica social ambientada en el Colegio Militar Leoncio Prado de Lima.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>El círculo</titulo>
+                            <paginas>50</paginas>
+                            <resumen>Los cadetes forman un grupo para sobrevivir en el colegio.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>El robo</titulo>
+                            <paginas>45</paginas>
+                            <resumen>Un robo desencadena una serie de eventos.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Fernando García</usuario>
+                            <puntuacion>4</puntuacion>
+                            <fecha>10/08/2024</fecha>
+                            <comentario>Muy buena crítica social. Un poco cruda.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+                <libro id="L008">
+                    <titulo>La fiesta del chivo</titulo>
+                    <isbn>978-8-420-47396-6</isbn>
+                    <anioPublicacion>2000</anioPublicacion>
+                    <editorial>Alfaguara</editorial>
+                    <numeroPaginas>518</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>28.50</precio>
+                    <stock>10</stock>
+                    <categoria>Novela histórica</categoria>
+                    <valoracion>4.7</valoracion>
+                    <descripcion>Novela sobre la dictadura de Rafael Leónidas Trujillo en República Dominicana.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>Urania regresa</titulo>
+                            <paginas>35</paginas>
+                            <resumen>Urania vuelve a República Dominicana después de años.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>El régimen</titulo>
+                            <paginas>48</paginas>
+                            <resumen>La crueldad del régimen de Trujillo.</resumen>
+                        </capitulo>
+                        <capitulo numero="3">
+                            <titulo>La conspiración</titulo>
+                            <paginas>52</paginas>
+                            <resumen>Planes para asesinar al dictador.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Patricia Moreno</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>15/09/2024</fecha>
+                            <comentario>Impresionante reconstrucción histórica.</comentario>
+                        </resena>
+                        <resena>
+                            <usuario>Javier Herrera</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>20/09/2024</fecha>
+                            <comentario>Una de las mejores novelas históricas que he leído.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+            </libros>
+        </autor>
+        
+        <autor id="A005">
+            <nombre>Julio Cortázar</nombre>
+            <nacionalidad>Argentina</nacionalidad>
+            <fechaNacimiento>26/08/1914</fechaNacimiento>
+            <fechaFallecimiento>12/02/1984</fechaFallecimiento>
+            <generoLiterario>Fantástico</generoLiterario>
+            <premios>
+                <premio>
+                    <nombre>Premio Médicis</nombre>
+                    <anio>1974</anio>
+                </premio>
+            </premios>
+            <biografia>Escritor, traductor e intelectual argentino, uno de los autores más innovadores del siglo XX.</biografia>
+            <libros>
+                <libro id="L009">
+                    <titulo>Rayuela</titulo>
+                    <isbn>978-8-420-41992-6</isbn>
+                    <anioPublicacion>1963</anioPublicacion>
+                    <editorial>Sudamericana</editorial>
+                    <numeroPaginas>635</numeroPaginas>
+                    <idioma>Español</idioma>
+                    <precio>32.00</precio>
+                    <stock>11</stock>
+                    <categoria>Novela experimental</categoria>
+                    <valoracion>4.6</valoracion>
+                    <descripcion>Novela anticonvencional que puede leerse en diferentes órdenes.</descripcion>
+                    <capitulos>
+                        <capitulo numero="1">
+                            <titulo>Del lado de allá</titulo>
+                            <paginas>200</paginas>
+                            <resumen>La vida de Horacio Oliveira en París.</resumen>
+                        </capitulo>
+                        <capitulo numero="2">
+                            <titulo>Del lado de acá</titulo>
+                            <paginas>180</paginas>
+                            <resumen>Horacio regresa a Buenos Aires.</resumen>
+                        </capitulo>
+                        <capitulo numero="3">
+                            <titulo>De otros lados</titulo>
+                            <paginas>255</paginas>
+                            <resumen>Capítulos prescindibles que complementan la historia.</resumen>
+                        </capitulo>
+                    </capitulos>
+                    <resenas>
+                        <resena>
+                            <usuario>Andrea Vega</usuario>
+                            <puntuacion>5</puntuacion>
+                            <fecha>25/10/2024</fecha>
+                            <comentario>Revolucionaria. Una obra maestra experimental.</comentario>
+                        </resena>
+                        <resena>
+                            <usuario>Diego Fernández</usuario>
+                            <puntuacion>4</puntuacion>
+                            <fecha>30/10/2024</fecha>
+                            <comentario>Compleja pero brillante. Requiere dedicación.</comentario>
+                        </resena>
+                    </resenas>
+                </libro>
+            </libros>
+        </autor>
+    </autores>
+    
+    <!-- SECCIÓN DE SOCIOS -->
+    <socios>
+        <socio id="S001">
+            <nombre>Juan Pérez García</nombre>
+            <dni>12345678A</dni>
+            <email>juan.perez@email.com</email>
+            <telefono>666123456</telefono>
+            <fechaInscripcion>15/01/2020</fechaInscripcion>
+            <tipoSocio>Premium</tipoSocio>
+            <estado>Activo</estado>
+            <prestamosActivos>2</prestamosActivos>
+            <historialPrestamos>
+                <prestamo>
+                    <libroId>L001</libroId>
+                    <fechaPrestamo>01/11/2024</fechaPrestamo>
+                    <fechaDevolucion>15/11/2024</fechaDevolucion>
+                    <estado>Prestado</estado>
+                </prestamo>
+                <prestamo>
+                    <libroId>L005</libroId>
+                    <fechaPrestamo>10/10/2024</fechaPrestamo>
+                    <fechaDevolucion>24/10/2024</fechaDevolucion>
+                    <estado>Devuelto</estado>
+                </prestamo>
+            </historialPrestamos>
+        </socio>
+        <socio id="S002">
+            <nombre>María López Martínez</nombre>
+            <dni>87654321B</dni>
+            <email>maria.lopez@email.com</email>
+            <telefono>677234567</telefono>
+            <fechaInscripcion>20/03/2019</fechaInscripcion>
+            <tipoSocio>Estándar</tipoSocio>
+            <estado>Activo</estado>
+            <prestamosActivos>1</prestamosActivos>
+            <historialPrestamos>
+                <prestamo>
+                    <libroId>L003</libroId>
+                    <fechaPrestamo>05/11/2024</fechaPrestamo>
+                    <fechaDevolucion>19/11/2024</fechaDevolucion>
+                    <estado>Prestado</estado>
+                </prestamo>
+            </historialPrestamos>
+        </socio>
+    </socios>
+    
+    <!-- ESTADÍSTICAS -->
+    <estadisticas>
+        <totalLibros>9</totalLibros>
+        <totalAutores>5</totalAutores>
+        <totalSocios>2</totalSocios>
+        <prestamosActivos>3</prestamosActivos>
+        <prestamosHistoricos>3</prestamosHistoricos>
+        <libroMasPrestado>L001</libroMasPrestado>
+        <autorMasPopular>A001</autorMasPopular>
+    </estadisticas>
+</biblioteca>

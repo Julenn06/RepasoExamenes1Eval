@@ -1,6 +1,6 @@
 # 📚 Proyectos de Repaso - Examen Acceso a Datos
 
-Colección de 6 proyectos Java para practicar conceptos de **Acceso a Datos** con diferentes tecnologías y arquitecturas.
+Colección de **7 proyectos Java** para practicar conceptos de **Acceso a Datos** con diferentes tecnologías y arquitecturas.
 
 ---
 
@@ -353,7 +353,7 @@ mvn clean compile
 mvn exec:java -Dexec.mainClass="view.Main"
 ```
 
-### **Para proyectos sin Firebase (03, 04):**
+### **Para proyectos sin Firebase (03, 04, 07):**
 
 ```bash
 cd RepasoXX
@@ -474,4 +474,13 @@ RepasoExamenAD/
         ├── controller/        ← 6 controladores
         ├── model/             ← 5 modelos
         └── view/              ← 1 vista con 7 menús
+
+└── Repaso07/                    ← XML Avanzado Multinivel
+    ├── pom.xml
+    ├── biblioteca.xml         ← XML complejo con 5 niveles
+    ├── README.md              ← Documentación específica
+    └── src/
+        ├── controller/        ← 5 controladores (XML, Autor, Libro, Socio, Estadísticas)
+        ├── model/             ← 8 modelos (Biblioteca, Autor, Libro, Capitulo, Resena, etc.)
+        └── view/              ← 1 vista con 5 menús (40 operaciones)
 ```
