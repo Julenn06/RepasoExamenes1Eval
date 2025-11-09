@@ -517,25 +517,3 @@ RepasoExamenAD/
         ├── model/             ← 5 modelos
         └── view/              ← 1 vista con 7 menús
 ```
-
----
-
-## ✨ Conclusión
-
-Esta colección de proyectos cubre **todos los aspectos fundamentales** de Acceso a Datos:
-
-- ✅ Diferentes tecnologías de persistencia
-- ✅ Arquitectura MVC bien implementada
-- ✅ CRUD completo en múltiples formatos
-- ✅ Búsquedas y filtros avanzados
-- ✅ Relaciones entre entidades
-- ✅ Exportación de datos
-- ✅ Manejo robusto de excepciones
-
-**¡Perfectos para preparar el examen de Acceso a Datos!** 🎉
-
----
-
-**Autor:** Preparación Examen AD  
-**Fecha:** Noviembre 2025  
-**Versión:** 1.0
