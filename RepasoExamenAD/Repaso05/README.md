@@ -330,14 +330,6 @@ Date fecha = document.getDate("birthDate");
 
 ## ⚠️ Notas Importantes
 
-### Seguridad
-- **NUNCA** subas `serviceAccountKey.json` a Git/GitHub
-- Añade a `.gitignore`:
-  ```
-  serviceAccountKey.json
-  *.json
-  ```
-
 ### Limitaciones de Firestore
 - **Búsqueda full-text:** No nativa, se hace client-side
 - **Índices compuestos:** Necesarios para múltiples `where`
@@ -359,20 +351,6 @@ Date fecha = document.getDate("birthDate");
 - [Firebase Admin SDK - Java](https://firebase.google.com/docs/admin/setup)
 - [Firestore Documentation](https://firebase.google.com/docs/firestore)
 - [Maven Repository - Firebase](https://mvnrepository.com/artifact/com.google.firebase/firebase-admin)
-
----
-
-## ✅ Checklist para el Examen
-
-- [ ] Entiendo la diferencia entre SQL y NoSQL
-- [ ] Sé cómo conectar a Firestore con serviceAccountKey.json
-- [ ] Puedo hacer operaciones CRUD (Create, Read, Update, Delete)
-- [ ] Entiendo cómo filtrar datos con `where`
-- [ ] Sé cómo crear relaciones entre colecciones
-- [ ] Puedo exportar datos a XML y DAT
-- [ ] Comprendo el patrón MVC aplicado al proyecto
-- [ ] Sé manejar fechas con SimpleDateFormat
-- [ ] Entiendo operaciones asíncronas con ApiFuture
 
 ---
 
