@@ -1,4 +1,6 @@
 serviceAccountKey.json
+alumnos.xml
+alumnos.dat
 # Compiled output
 /dist
 /tmp
