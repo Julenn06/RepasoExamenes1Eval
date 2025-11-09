@@ -15,11 +15,20 @@ import model.Alumnos;
  */
 public class Main {
 
-	private static final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-	private static AlumnoController alumnoCtrl = new AlumnoController();
+	private final SimpleDateFormat SDF = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+	private final AlumnoController alumnoCtrl;
+	private final Scanner sc;
+
+	public Main() {
+		this.alumnoCtrl = new AlumnoController();
+		this.sc = new Scanner(System.in);
+	}
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		new Main().iniciar();
+	}
+
+	public void iniciar() {
 		boolean running = true;
 
 		System.out.println("╔════════════════════════════════════════════════╗");
@@ -37,25 +46,25 @@ public class Main {
 				leerTodos();
 				break;
 			case "2":
-				buscarPorNombre(sc);
+				buscarPorNombre();
 				break;
 			case "3":
-				buscarPorNombreParcial(sc);
+				buscarPorNombreParcial();
 				break;
 			case "4":
-				filtrarPorEdad(sc);
+				filtrarPorEdad();
 				break;
 			case "5":
-				agregarAlumno(sc);
+				agregarAlumno();
 				break;
 			case "6":
-				editarAlumno(sc);
+				editarAlumno();
 				break;
 			case "7":
-				eliminarAlumno(sc);
+				eliminarAlumno();
 				break;
 			case "8":
-				exportarDatos(sc);
+				exportarDatos();
 				break;
 			case "9":
 				System.out.println("\n👋 ¡Hasta luego!");
@@ -73,7 +82,7 @@ public class Main {
 		sc.close();
 	}
 
-	private static void mostrarMenu() {
+	private void mostrarMenu() {
 		System.out.println("\n╔════════════════════════════════════════════════╗");
 		System.out.println("║         GESTIÓN DE ALUMNOS (.DAT)              ║");
 		System.out.println("╚════════════════════════════════════════════════╝");
@@ -89,7 +98,7 @@ public class Main {
 		System.out.println("─".repeat(50));
 	}
 
-	private static void leerTodos() {
+	private void leerTodos() {
 		System.out.println("\n📋 LISTADO COMPLETO DE ALUMNOS");
 		System.out.println("═".repeat(50));
 
@@ -108,7 +117,7 @@ public class Main {
 		System.out.println("\n✅ Total: " + alumnos.size() + " alumnos");
 	}
 
-	private static void buscarPorNombre(Scanner sc) {
+	private void buscarPorNombre() {
 		System.out.print("\n🔍 Introduce el nombre exacto del alumno: ");
 		String nombre = sc.nextLine().trim();
 
@@ -124,7 +133,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarPorNombreParcial(Scanner sc) {
+	private void buscarPorNombreParcial() {
 		System.out.print("\n🔎 Introduce parte del nombre: ");
 		String parte = sc.nextLine().trim();
 
@@ -144,7 +153,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarPorEdad(Scanner sc) {
+	private void filtrarPorEdad() {
 		System.out.print("\n🎂 Introduce edad mínima: ");
 		int edadMin = Integer.parseInt(sc.nextLine().trim());
 		System.out.print("🎂 Introduce edad máxima: ");
@@ -167,7 +176,7 @@ public class Main {
 		}
 	}
 
-	private static void agregarAlumno(Scanner sc) {
+	private void agregarAlumno() {
 		System.out.println("\n➕ AGREGAR NUEVO ALUMNO");
 		System.out.println("═".repeat(50));
 
@@ -195,7 +204,7 @@ public class Main {
 		}
 	}
 
-	private static void editarAlumno(Scanner sc) {
+	private void editarAlumno() {
 		System.out.println("\n✏️  EDITAR ALUMNO");
 		System.out.println("═".repeat(50));
 
@@ -242,7 +251,7 @@ public class Main {
 		}
 	}
 
-	private static void eliminarAlumno(Scanner sc) {
+	private void eliminarAlumno() {
 		System.out.println("\n❌ ELIMINAR ALUMNO");
 		System.out.println("═".repeat(50));
 
@@ -274,7 +283,7 @@ public class Main {
 		}
 	}
 
-	private static void exportarDatos(Scanner sc) {
+	private void exportarDatos() {
 		System.out.println("\n📤 EXPORTAR DATOS");
 		System.out.println("═".repeat(50));
 		System.out.println("1. 📄 Exportar a CSV");

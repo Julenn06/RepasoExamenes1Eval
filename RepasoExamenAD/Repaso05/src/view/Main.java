@@ -28,29 +28,37 @@ import model.Curso;
  */
 public class Main {
 
-	private static Scanner sc = new Scanner(System.in);
-	private static AlumnosController alumnosCtrl;
-	private static CursosController cursosCtrl;
-	private static ExportController exportCtrl;
+	private final Scanner sc;
+	private final AlumnosController alumnosCtrl;
+	private final CursosController cursosCtrl;
+	private final ExportController exportCtrl;
 
-	public static void main(String[] args) {
-		System.out.println("===========================================");
-		System.out.println("  SISTEMA DE GESTIÓN FIRESTORE - REPASO05");
-		System.out.println("===========================================\n");
-
+	public Main() {
+		this.sc = new Scanner(System.in);
+		
 		// Inicializar conexión a Firestore
 		System.out.println("Conectando a Firestore...");
 		DBConnection.initialize();
 
 		if (DBConnection.getFirestore() == null) {
 			System.err.println("ERROR: No se pudo conectar a Firestore. Verifica serviceAccountKey.json");
-			return;
+			throw new RuntimeException("Error de conexión a Firestore");
 		}
 
 		// Inicializar controllers
-		alumnosCtrl = new AlumnosController();
-		cursosCtrl = new CursosController();
-		exportCtrl = new ExportController();
+		this.alumnosCtrl = new AlumnosController();
+		this.cursosCtrl = new CursosController();
+		this.exportCtrl = new ExportController();
+	}
+
+	public static void main(String[] args) {
+		new Main().iniciar();
+	}
+
+	public void iniciar() {
+		System.out.println("===========================================");
+		System.out.println("  SISTEMA DE GESTIÓN FIRESTORE - REPASO05");
+		System.out.println("===========================================\n");
 
 		// Menú principal
 		boolean running = true;
@@ -86,7 +94,7 @@ public class Main {
 
 	// ==================== MENÚS ====================
 
-	private static void mostrarMenuPrincipal() {
+	private void mostrarMenuPrincipal() {
 		System.out.println("\n╔═══════════════════════════════════════╗");
 		System.out.println("║         MENÚ PRINCIPAL                ║");
 		System.out.println("╚═══════════════════════════════════════╝");
@@ -98,7 +106,7 @@ public class Main {
 		System.out.println("───────────────────────────────────────");
 	}
 
-	private static void menuGestionAlumnos() {
+	private void menuGestionAlumnos() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════╗");
@@ -151,7 +159,7 @@ public class Main {
 		}
 	}
 
-	private static void menuGestionCursos() {
+	private void menuGestionCursos() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════╗");
@@ -192,7 +200,7 @@ public class Main {
 		}
 	}
 
-	private static void menuRelaciones() {
+	private void menuRelaciones() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════╗");
@@ -225,7 +233,7 @@ public class Main {
 		}
 	}
 
-	private static void menuExportacion() {
+	private void menuExportacion() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════╗");
@@ -272,7 +280,7 @@ public class Main {
 
 	// ==================== OPERACIONES ALUMNOS ====================
 
-	private static void crearAlumno() {
+	private void crearAlumno() {
 		System.out.println("\n--- Crear Nuevo Alumno ---");
 		System.out.print("Nombre: ");
 		String nombre = sc.nextLine().trim();
@@ -313,7 +321,7 @@ public class Main {
 		}
 	}
 
-	private static void listarAlumnos() {
+	private void listarAlumnos() {
 		System.out.println("\n--- Lista de Alumnos ---");
 		List<Alumnos> alumnos = alumnosCtrl.leerTodos();
 		if (alumnos.isEmpty()) {
@@ -326,7 +334,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnoPorId() {
+	private void buscarAlumnoPorId() {
 		System.out.print("\nIntroduce el ID del alumno: ");
 		String id = sc.nextLine().trim();
 		Alumnos alumno = alumnosCtrl.leerPorId(id);
@@ -337,7 +345,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnoPorNombre() {
+	private void buscarAlumnoPorNombre() {
 		System.out.print("\nIntroduce el nombre (o fragmento): ");
 		String nombre = sc.nextLine().trim();
 		List<Alumnos> alumnos = alumnosCtrl.leerPorNombre(nombre);
@@ -352,7 +360,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAlumnosPorEdad() {
+	private void filtrarAlumnosPorEdad() {
 		System.out.print("\nEdad mínima: ");
 		int min;
 		try {
@@ -383,7 +391,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAlumnosPorCurso() {
+	private void filtrarAlumnosPorCurso() {
 		System.out.print("\nIntroduce el ID del curso: ");
 		String idCurso = sc.nextLine().trim();
 		List<Alumnos> alumnos = alumnosCtrl.filtrarPorCurso(idCurso);
@@ -398,7 +406,7 @@ public class Main {
 		}
 	}
 
-	private static void actualizarAlumno() {
+	private void actualizarAlumno() {
 		System.out.print("\nIntroduce el ID del alumno a actualizar: ");
 		String id = sc.nextLine().trim();
 		Alumnos alumno = alumnosCtrl.leerPorId(id);
@@ -448,7 +456,7 @@ public class Main {
 		}
 	}
 
-	private static void eliminarAlumno() {
+	private void eliminarAlumno() {
 		System.out.print("\nIntroduce el ID del alumno a eliminar: ");
 		String id = sc.nextLine().trim();
 		System.out.print("¿Estás seguro? (s/n): ");
@@ -465,7 +473,7 @@ public class Main {
 
 	// ==================== OPERACIONES CURSOS ====================
 
-	private static void crearCurso() {
+	private void crearCurso() {
 		System.out.println("\n--- Crear Nuevo Curso ---");
 		System.out.print("Nombre del curso: ");
 		String nombre = sc.nextLine().trim();
@@ -487,7 +495,7 @@ public class Main {
 		}
 	}
 
-	private static void listarCursos() {
+	private void listarCursos() {
 		System.out.println("\n--- Lista de Cursos ---");
 		List<Curso> cursos = cursosCtrl.leerTodos();
 		if (cursos.isEmpty()) {
@@ -500,7 +508,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarCursoPorId() {
+	private void buscarCursoPorId() {
 		System.out.print("\nIntroduce el ID del curso: ");
 		String id = sc.nextLine().trim();
 		Curso curso = cursosCtrl.leerPorId(id);
@@ -511,7 +519,7 @@ public class Main {
 		}
 	}
 
-	private static void actualizarCurso() {
+	private void actualizarCurso() {
 		System.out.print("\nIntroduce el ID del curso a actualizar: ");
 		String id = sc.nextLine().trim();
 		Curso curso = cursosCtrl.leerPorId(id);
@@ -540,7 +548,7 @@ public class Main {
 		}
 	}
 
-	private static void eliminarCurso() {
+	private void eliminarCurso() {
 		System.out.print("\nIntroduce el ID del curso a eliminar: ");
 		String id = sc.nextLine().trim();
 		System.out.print("¿Estás seguro? (s/n): ");
@@ -557,7 +565,7 @@ public class Main {
 
 	// ==================== OPERACIONES RELACIONES ====================
 
-	private static void asignarCursoAAlumno() {
+	private void asignarCursoAAlumno() {
 		System.out.print("\nIntroduce el ID del alumno: ");
 		String idAlumno = sc.nextLine().trim();
 		Alumnos alumno = alumnosCtrl.leerPorId(idAlumno);
@@ -580,7 +588,7 @@ public class Main {
 		}
 	}
 
-	private static void verAlumnosDeCurso() {
+	private void verAlumnosDeCurso() {
 		System.out.print("\nIntroduce el ID del curso: ");
 		String idCurso = sc.nextLine().trim();
 		Curso curso = cursosCtrl.leerPorId(idCurso);
@@ -602,7 +610,7 @@ public class Main {
 		}
 	}
 
-	private static void quitarCursoDeAlumno() {
+	private void quitarCursoDeAlumno() {
 		System.out.print("\nIntroduce el ID del alumno: ");
 		String idAlumno = sc.nextLine().trim();
 		Alumnos alumno = alumnosCtrl.leerPorId(idAlumno);

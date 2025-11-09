@@ -13,16 +13,30 @@ import model.*;
  */
 public class Main {
 
-	private static Scanner sc = new Scanner(System.in);
-	private static AlumnoController alumnoCtrl = new AlumnoController();
-	private static CursoController cursoCtrl = new CursoController();
-	private static ProfesorController profesorCtrl = new ProfesorController();
-	private static AsignaturaController asignaturaCtrl = new AsignaturaController();
-	private static MatriculaController matriculaCtrl = new MatriculaController();
-	private static EstadisticasController estadisticasCtrl = new EstadisticasController();
+	private final Scanner sc;
+	private final AlumnoController alumnoCtrl;
+	private final CursoController cursoCtrl;
+	private final ProfesorController profesorCtrl;
+	private final AsignaturaController asignaturaCtrl;
+	private final MatriculaController matriculaCtrl;
+	private final EstadisticasController estadisticasCtrl;
+
+	public Main() {
+		this.sc = new Scanner(System.in);
+		DBConnection.initialize();
+		this.alumnoCtrl = new AlumnoController();
+		this.cursoCtrl = new CursoController();
+		this.profesorCtrl = new ProfesorController();
+		this.asignaturaCtrl = new AsignaturaController();
+		this.matriculaCtrl = new MatriculaController();
+		this.estadisticasCtrl = new EstadisticasController();
+	}
 
 	public static void main(String[] args) {
-		DBConnection.initialize();
+		new Main().iniciar();
+	}
+
+	public void iniciar() {
 		System.out.println("\n🎓 SISTEMA DE GESTIÓN ACADÉMICA - REPASO06 🎓");
 		System.out.println("Sistema súper completo para examen de Acceso a Datos\n");
 
@@ -64,7 +78,7 @@ public class Main {
 		sc.close();
 	}
 
-	private static void mostrarMenuPrincipal() {
+	private void mostrarMenuPrincipal() {
 		System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
 		System.out.println("║                  MENÚ PRINCIPAL                           ║");
 		System.out.println("╚═══════════════════════════════════════════════════════════╝");
@@ -80,7 +94,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ ALUMNOS ====================
-	private static void menuAlumnos() {
+	private void menuAlumnos() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -160,7 +174,7 @@ public class Main {
 		}
 	}
 
-	private static void crearAlumno() {
+	private void crearAlumno() {
 		System.out.println("\n--- CREAR NUEVO ALUMNO ---");
 		Alumno alumno = new Alumno();
 
@@ -199,7 +213,7 @@ public class Main {
 		alumnoCtrl.crear(alumno);
 	}
 
-	private static void listarAlumnos() {
+	private void listarAlumnos() {
 		System.out.println("\n--- LISTADO DE ALUMNOS ---");
 		List<Alumno> alumnos = alumnoCtrl.leerTodos();
 		for (Alumno a : alumnos) {
@@ -207,7 +221,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnoPorId() {
+	private void buscarAlumnoPorId() {
 		System.out.print("ID del alumno: ");
 		String id = sc.nextLine();
 		Alumno alumno = alumnoCtrl.leerPorId(id);
@@ -216,7 +230,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnoPorDni() {
+	private void buscarAlumnoPorDni() {
 		System.out.print("DNI: ");
 		String dni = sc.nextLine();
 		Alumno alumno = alumnoCtrl.buscarPorDni(dni);
@@ -225,7 +239,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnoPorEmail() {
+	private void buscarAlumnoPorEmail() {
 		System.out.print("Email: ");
 		String email = sc.nextLine();
 		Alumno alumno = alumnoCtrl.buscarPorEmail(email);
@@ -234,7 +248,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnoPorNombre() {
+	private void buscarAlumnoPorNombre() {
 		System.out.print("Nombre a buscar: ");
 		String nombre = sc.nextLine();
 		List<Alumno> alumnos = alumnoCtrl.buscarPorNombre(nombre);
@@ -243,7 +257,7 @@ public class Main {
 		}
 	}
 
-	private static void actualizarAlumno() {
+	private void actualizarAlumno() {
 		System.out.print("ID del alumno a actualizar: ");
 		String id = sc.nextLine();
 		Alumno alumno = alumnoCtrl.leerPorId(id);
@@ -260,13 +274,13 @@ public class Main {
 		}
 	}
 
-	private static void eliminarAlumno() {
+	private void eliminarAlumno() {
 		System.out.print("ID del alumno a eliminar: ");
 		String id = sc.nextLine();
 		alumnoCtrl.eliminar(id);
 	}
 
-	private static void filtrarAlumnosPorCurso() {
+	private void filtrarAlumnosPorCurso() {
 		System.out.print("ID del curso: ");
 		String idCurso = sc.nextLine();
 		List<Alumno> alumnos = alumnoCtrl.filtrarPorCurso(idCurso);
@@ -275,7 +289,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAlumnosPorCiudad() {
+	private void filtrarAlumnosPorCiudad() {
 		System.out.print("Ciudad: ");
 		String ciudad = sc.nextLine();
 		List<Alumno> alumnos = alumnoCtrl.filtrarPorCiudad(ciudad);
@@ -284,7 +298,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAlumnosPorEstado() {
+	private void filtrarAlumnosPorEstado() {
 		System.out.print("Estado (ACTIVO/BAJA/SUSPENDIDO): ");
 		String estado = sc.nextLine();
 		List<Alumno> alumnos = alumnoCtrl.filtrarPorEstado(estado);
@@ -293,7 +307,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAlumnosPorNota() {
+	private void filtrarAlumnosPorNota() {
 		System.out.print("Nota mínima: ");
 		double nota = Double.parseDouble(sc.nextLine());
 		List<Alumno> alumnos = alumnoCtrl.filtrarPorNotaMedia(nota);
@@ -302,7 +316,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAlumnosPorCreditos() {
+	private void filtrarAlumnosPorCreditos() {
 		System.out.print("Créditos mínimos: ");
 		int creditos = Integer.parseInt(sc.nextLine());
 		List<Alumno> alumnos = alumnoCtrl.filtrarPorCreditos(creditos);
@@ -311,7 +325,7 @@ public class Main {
 		}
 	}
 
-	private static void topAlumnos() {
+	private void topAlumnos() {
 		System.out.print("¿Cuántos top alumnos mostrar?: ");
 		int limite = Integer.parseInt(sc.nextLine());
 		List<Alumno> alumnos = alumnoCtrl.obtenerTopAlumnos(limite);
@@ -320,14 +334,14 @@ public class Main {
 		}
 	}
 
-	private static void alumnosSinCurso() {
+	private void alumnosSinCurso() {
 		List<Alumno> alumnos = alumnoCtrl.buscarSinCurso();
 		for (Alumno a : alumnos) {
 			System.out.println(a.toString());
 		}
 	}
 
-	private static void mostrarDetallesAlumno(Alumno a) {
+	private void mostrarDetallesAlumno(Alumno a) {
 		System.out.println("\n══════════ DETALLES DEL ALUMNO ══════════");
 		System.out.println("ID:              " + a.getId());
 		System.out.println("Nombre completo: " + a.getNombreCompleto());
@@ -345,7 +359,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ CURSOS ====================
-	private static void menuCursos() {
+	private void menuCursos() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -413,7 +427,7 @@ public class Main {
 		}
 	}
 
-	private static void crearCurso() {
+	private void crearCurso() {
 		System.out.println("\n--- CREAR NUEVO CURSO ---");
 		Curso curso = new Curso();
 
@@ -449,7 +463,7 @@ public class Main {
 		cursoCtrl.crear(curso);
 	}
 
-	private static void listarCursos() {
+	private void listarCursos() {
 		System.out.println("\n--- LISTADO DE CURSOS ---");
 		List<Curso> cursos = cursoCtrl.leerTodos();
 		for (Curso c : cursos) {
@@ -457,7 +471,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarCursoPorId() {
+	private void buscarCursoPorId() {
 		System.out.print("ID del curso: ");
 		String id = sc.nextLine();
 		Curso curso = cursoCtrl.leerPorId(id);
@@ -466,7 +480,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarCursoPorCodigo() {
+	private void buscarCursoPorCodigo() {
 		System.out.print("Código: ");
 		String codigo = sc.nextLine();
 		Curso curso = cursoCtrl.buscarPorCodigo(codigo);
@@ -475,7 +489,7 @@ public class Main {
 		}
 	}
 
-	private static void actualizarCurso() {
+	private void actualizarCurso() {
 		System.out.print("ID del curso: ");
 		String id = sc.nextLine();
 		Curso curso = cursoCtrl.leerPorId(id);
@@ -488,12 +502,12 @@ public class Main {
 		}
 	}
 
-	private static void eliminarCurso() {
+	private void eliminarCurso() {
 		System.out.print("ID del curso: ");
 		cursoCtrl.eliminar(sc.nextLine());
 	}
 
-	private static void filtrarCursosPorNivel() {
+	private void filtrarCursosPorNivel() {
 		System.out.print("Nivel: ");
 		List<Curso> cursos = cursoCtrl.filtrarPorNivel(sc.nextLine());
 		for (Curso c : cursos) {
@@ -501,7 +515,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarCursosPorTurno() {
+	private void filtrarCursosPorTurno() {
 		System.out.print("Turno: ");
 		List<Curso> cursos = cursoCtrl.filtrarPorTurno(sc.nextLine());
 		for (Curso c : cursos) {
@@ -509,7 +523,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarCursosPorEstado() {
+	private void filtrarCursosPorEstado() {
 		System.out.print("¿Activos? (true/false): ");
 		boolean activo = Boolean.parseBoolean(sc.nextLine());
 		List<Curso> cursos = cursoCtrl.filtrarPorEstado(activo);
@@ -518,14 +532,14 @@ public class Main {
 		}
 	}
 
-	private static void cursosConPlazas() {
+	private void cursosConPlazas() {
 		List<Curso> cursos = cursoCtrl.filtrarConPlazasDisponibles();
 		for (Curso c : cursos) {
 			System.out.println(c.toString());
 		}
 	}
 
-	private static void cursosMasCaros() {
+	private void cursosMasCaros() {
 		System.out.print("¿Cuántos?: ");
 		int limite = Integer.parseInt(sc.nextLine());
 		List<Curso> cursos = cursoCtrl.obtenerCursosMasCaros(limite);
@@ -534,7 +548,7 @@ public class Main {
 		}
 	}
 
-	private static void cursosMayorOcupacion() {
+	private void cursosMayorOcupacion() {
 		System.out.print("¿Cuántos?: ");
 		int limite = Integer.parseInt(sc.nextLine());
 		List<Curso> cursos = cursoCtrl.obtenerCursosMayorOcupacion(limite);
@@ -544,7 +558,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ PROFESORES ====================
-	private static void menuProfesores() {
+	private void menuProfesores() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -604,7 +618,7 @@ public class Main {
 		}
 	}
 
-	private static void crearProfesor() {
+	private void crearProfesor() {
 		System.out.println("\n--- CREAR PROFESOR ---");
 		Profesor profesor = new Profesor();
 
@@ -644,28 +658,28 @@ public class Main {
 		profesorCtrl.crear(profesor);
 	}
 
-	private static void listarProfesores() {
+	private void listarProfesores() {
 		List<Profesor> profesores = profesorCtrl.leerTodos();
 		for (Profesor p : profesores) {
 			System.out.println(p.toString());
 		}
 	}
 
-	private static void buscarProfesorPorId() {
+	private void buscarProfesorPorId() {
 		System.out.print("ID: ");
 		Profesor p = profesorCtrl.leerPorId(sc.nextLine());
 		if (p != null)
 			System.out.println(p.toString());
 	}
 
-	private static void buscarProfesorPorDni() {
+	private void buscarProfesorPorDni() {
 		System.out.print("DNI: ");
 		Profesor p = profesorCtrl.buscarPorDni(sc.nextLine());
 		if (p != null)
 			System.out.println(p.toString());
 	}
 
-	private static void actualizarProfesor() {
+	private void actualizarProfesor() {
 		System.out.print("ID: ");
 		Profesor p = profesorCtrl.leerPorId(sc.nextLine());
 		if (p != null) {
@@ -675,12 +689,12 @@ public class Main {
 		}
 	}
 
-	private static void eliminarProfesor() {
+	private void eliminarProfesor() {
 		System.out.print("ID: ");
 		profesorCtrl.eliminar(sc.nextLine());
 	}
 
-	private static void filtrarProfesoresPorDepartamento() {
+	private void filtrarProfesoresPorDepartamento() {
 		System.out.print("Departamento: ");
 		List<Profesor> profesores = profesorCtrl.filtrarPorDepartamento(sc.nextLine());
 		for (Profesor p : profesores) {
@@ -688,7 +702,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarProfesoresPorEspecialidad() {
+	private void filtrarProfesoresPorEspecialidad() {
 		System.out.print("Especialidad: ");
 		List<Profesor> profesores = profesorCtrl.filtrarPorEspecialidad(sc.nextLine());
 		for (Profesor p : profesores) {
@@ -696,7 +710,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarProfesoresPorContrato() {
+	private void filtrarProfesoresPorContrato() {
 		System.out.print("Tipo: ");
 		List<Profesor> profesores = profesorCtrl.filtrarPorTipoContrato(sc.nextLine());
 		for (Profesor p : profesores) {
@@ -704,7 +718,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarProfesoresPorSalario() {
+	private void filtrarProfesoresPorSalario() {
 		System.out.print("Salario mínimo: ");
 		List<Profesor> profesores = profesorCtrl.filtrarPorSalarioMinimo(Double.parseDouble(sc.nextLine()));
 		for (Profesor p : profesores) {
@@ -713,7 +727,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ ASIGNATURAS ====================
-	private static void menuAsignaturas() {
+	private void menuAsignaturas() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -761,7 +775,7 @@ public class Main {
 		}
 	}
 
-	private static void crearAsignatura() {
+	private void crearAsignatura() {
 		System.out.println("\n--- CREAR ASIGNATURA ---");
 		Asignatura asignatura = new Asignatura();
 
@@ -792,28 +806,28 @@ public class Main {
 		asignaturaCtrl.crear(asignatura);
 	}
 
-	private static void listarAsignaturas() {
+	private void listarAsignaturas() {
 		List<Asignatura> asignaturas = asignaturaCtrl.leerTodas();
 		for (Asignatura a : asignaturas) {
 			System.out.println(a.toString());
 		}
 	}
 
-	private static void buscarAsignaturaPorId() {
+	private void buscarAsignaturaPorId() {
 		System.out.print("ID: ");
 		Asignatura a = asignaturaCtrl.leerPorId(sc.nextLine());
 		if (a != null)
 			System.out.println(a.toString());
 	}
 
-	private static void buscarAsignaturaPorCodigo() {
+	private void buscarAsignaturaPorCodigo() {
 		System.out.print("Código: ");
 		Asignatura a = asignaturaCtrl.buscarPorCodigo(sc.nextLine());
 		if (a != null)
 			System.out.println(a.toString());
 	}
 
-	private static void filtrarAsignaturasPorCurso() {
+	private void filtrarAsignaturasPorCurso() {
 		System.out.print("ID Curso: ");
 		List<Asignatura> asignaturas = asignaturaCtrl.filtrarPorCurso(sc.nextLine());
 		for (Asignatura a : asignaturas) {
@@ -821,7 +835,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAsignaturasPorProfesor() {
+	private void filtrarAsignaturasPorProfesor() {
 		System.out.print("ID Profesor: ");
 		List<Asignatura> asignaturas = asignaturaCtrl.filtrarPorProfesor(sc.nextLine());
 		for (Asignatura a : asignaturas) {
@@ -829,7 +843,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarAsignaturasPorTipo() {
+	private void filtrarAsignaturasPorTipo() {
 		System.out.print("Tipo: ");
 		List<Asignatura> asignaturas = asignaturaCtrl.filtrarPorTipo(sc.nextLine());
 		for (Asignatura a : asignaturas) {
@@ -838,7 +852,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ MATRÍCULAS ====================
-	private static void menuMatriculas() {
+	private void menuMatriculas() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -890,7 +904,7 @@ public class Main {
 		}
 	}
 
-	private static void crearMatricula() {
+	private void crearMatricula() {
 		System.out.println("\n--- CREAR MATRÍCULA ---");
 		Matricula matricula = new Matricula();
 
@@ -906,14 +920,14 @@ public class Main {
 		matriculaCtrl.crear(matricula);
 	}
 
-	private static void listarMatriculas() {
+	private void listarMatriculas() {
 		List<Matricula> matriculas = matriculaCtrl.leerTodas();
 		for (Matricula m : matriculas) {
 			System.out.println(m.toString());
 		}
 	}
 
-	private static void actualizarCalificaciones() {
+	private void actualizarCalificaciones() {
 		System.out.print("ID Matrícula: ");
 		Matricula m = matriculaCtrl.leerPorId(sc.nextLine());
 		if (m != null) {
@@ -930,7 +944,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarMatriculasPorAlumno() {
+	private void filtrarMatriculasPorAlumno() {
 		System.out.print("ID Alumno: ");
 		List<Matricula> matriculas = matriculaCtrl.filtrarPorAlumno(sc.nextLine());
 		for (Matricula m : matriculas) {
@@ -938,7 +952,7 @@ public class Main {
 		}
 	}
 
-	private static void filtrarMatriculasPorAsignatura() {
+	private void filtrarMatriculasPorAsignatura() {
 		System.out.print("ID Asignatura: ");
 		List<Matricula> matriculas = matriculaCtrl.filtrarPorAsignatura(sc.nextLine());
 		for (Matricula m : matriculas) {
@@ -946,21 +960,21 @@ public class Main {
 		}
 	}
 
-	private static void verAprobadas() {
+	private void verAprobadas() {
 		List<Matricula> matriculas = matriculaCtrl.filtrarAprobadas();
 		for (Matricula m : matriculas) {
 			System.out.println(m.toString());
 		}
 	}
 
-	private static void verSuspensas() {
+	private void verSuspensas() {
 		List<Matricula> matriculas = matriculaCtrl.filtrarSuspensas();
 		for (Matricula m : matriculas) {
 			System.out.println(m.toString());
 		}
 	}
 
-	private static void verConvalidadas() {
+	private void verConvalidadas() {
 		List<Matricula> matriculas = matriculaCtrl.filtrarConvalidadas();
 		for (Matricula m : matriculas) {
 			System.out.println(m.toString());
@@ -968,7 +982,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ ESTADÍSTICAS ====================
-	private static void menuEstadisticas() {
+	private void menuEstadisticas() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -1009,7 +1023,7 @@ public class Main {
 	}
 
 	// ==================== MENÚ BÚSQUEDAS AVANZADAS ====================
-	private static void menuBusquedasAvanzadas() {
+	private void menuBusquedasAvanzadas() {
 		boolean back = false;
 		while (!back) {
 			System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
@@ -1053,7 +1067,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAlumnosPorRangoEdad() {
+	private void buscarAlumnosPorRangoEdad() {
 		System.out.print("Edad mínima: ");
 		int min = Integer.parseInt(sc.nextLine());
 		System.out.print("Edad máxima: ");
@@ -1064,7 +1078,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarCursosPorRangoPrecio() {
+	private void buscarCursosPorRangoPrecio() {
 		System.out.print("Precio mínimo: ");
 		double min = Double.parseDouble(sc.nextLine());
 		System.out.print("Precio máximo: ");
@@ -1075,7 +1089,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarProfesoresPorExperiencia() {
+	private void buscarProfesoresPorExperiencia() {
 		System.out.print("Años mínimos: ");
 		int años = Integer.parseInt(sc.nextLine());
 		List<Profesor> profesores = profesorCtrl.filtrarPorExperiencia(años);
@@ -1084,7 +1098,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarAsignaturasPorCreditos() {
+	private void buscarAsignaturasPorCreditos() {
 		System.out.print("Créditos mínimos: ");
 		int creditos = Integer.parseInt(sc.nextLine());
 		List<Asignatura> asignaturas = asignaturaCtrl.filtrarPorCreditos(creditos);
@@ -1093,7 +1107,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarMatriculasPorNota() {
+	private void buscarMatriculasPorNota() {
 		System.out.print("Nota mínima: ");
 		double nota = Double.parseDouble(sc.nextLine());
 		List<Matricula> matriculas = matriculaCtrl.filtrarPorNotaMinima(nota);
@@ -1102,7 +1116,7 @@ public class Main {
 		}
 	}
 
-	private static void buscarMatriculasPorConvocatoria() {
+	private void buscarMatriculasPorConvocatoria() {
 		System.out.print("Convocatoria: ");
 		int conv = Integer.parseInt(sc.nextLine());
 		List<Matricula> matriculas = matriculaCtrl.filtrarPorConvocatoria(conv);
