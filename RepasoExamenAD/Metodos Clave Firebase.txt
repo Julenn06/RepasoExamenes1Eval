@@ -230,6 +230,373 @@ public boolean eliminar(String id) {
 
 
 ═══════════════════════════════════════════════════════════════════════════════
+  6️⃣  READ WITH FILTER - LEER CON FILTROS (WHERE)
+═══════════════════════════════════════════════════════════════════════════════
+
+public List<Alumno> buscarPorEdad(int edad) {
+    List<Alumno> alumnos = new ArrayList<>();
+    try {
+        // 1. Aplicar filtro .whereEqualTo() a la consulta
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION)
+            .whereEqualTo("edad", edad)
+            .get();
+        
+        QuerySnapshot querySnapshot = future.get();
+        
+        // 2. Procesar documentos que coinciden con el filtro
+        for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+            Alumno alumno = mapToAlumno(doc);
+            if (alumno != null) {
+                alumnos.add(alumno);
+            }
+        }
+        
+        System.out.println("✓ Se encontraron " + alumnos.size() + " alumnos con edad " + edad);
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al buscar alumnos: " + e.getMessage());
+    }
+    return alumnos;
+}
+
+/* OPERADORES DE FILTRO DISPONIBLES:
+   - .whereEqualTo("campo", valor)           → campo == valor
+   - .whereNotEqualTo("campo", valor)        → campo != valor
+   - .whereGreaterThan("campo", valor)       → campo > valor
+   - .whereGreaterThanOrEqualTo("campo", v)  → campo >= valor
+   - .whereLessThan("campo", valor)          → campo < valor
+   - .whereLessThanOrEqualTo("campo", v)     → campo <= valor
+   - .whereIn("campo", lista)                → campo IN [val1, val2, ...]
+   - .whereArrayContains("campo", valor)     → array contiene valor
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  7️⃣  READ WITH MULTIPLE FILTERS - CONSULTAS COMPUESTAS
+═══════════════════════════════════════════════════════════════════════════════
+
+public List<Alumno> buscarPorEdadYCurso(int edadMin, int edadMax, String curso) {
+    List<Alumno> alumnos = new ArrayList<>();
+    try {
+        // 1. Combinar múltiples filtros
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION)
+            .whereGreaterThanOrEqualTo("edad", edadMin)
+            .whereLessThanOrEqualTo("edad", edadMax)
+            .whereEqualTo("curso", curso)
+            .get();
+        
+        QuerySnapshot querySnapshot = future.get();
+        
+        for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+            Alumno alumno = mapToAlumno(doc);
+            if (alumno != null) {
+                alumnos.add(alumno);
+            }
+        }
+        
+        System.out.println("✓ " + alumnos.size() + " alumnos entre " + edadMin + 
+                          "-" + edadMax + " años en " + curso);
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error: " + e.getMessage());
+    }
+    return alumnos;
+}
+
+/* IMPORTANTE:
+   - Puedes combinar múltiples filtros en una consulta
+   - Firestore requiere ÍNDICES para algunas combinaciones complejas
+   - Límite: No puedes usar != y < > en campos diferentes
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  8️⃣  READ WITH ORDERING - ORDENAR RESULTADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+public List<Alumno> leerOrdenadosPorNombre() {
+    List<Alumno> alumnos = new ArrayList<>();
+    try {
+        // 1. Ordenar resultados con .orderBy()
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION)
+            .orderBy("nombreCompleto", Query.Direction.ASCENDING)  // A-Z
+            .get();
+        
+        QuerySnapshot querySnapshot = future.get();
+        
+        for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+            Alumno alumno = mapToAlumno(doc);
+            if (alumno != null) {
+                alumnos.add(alumno);
+            }
+        }
+        
+        System.out.println("✓ " + alumnos.size() + " alumnos ordenados alfabéticamente");
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error: " + e.getMessage());
+    }
+    return alumnos;
+}
+
+/* OPCIONES DE ORDENAMIENTO:
+   - Query.Direction.ASCENDING   → Orden ascendente (A-Z, 0-9)
+   - Query.Direction.DESCENDING  → Orden descendente (Z-A, 9-0)
+   - Puedes ordenar por múltiples campos: .orderBy("edad").orderBy("nombre")
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  9️⃣  READ WITH LIMIT - LIMITAR RESULTADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+public List<Alumno> obtenerUltimosN(int cantidad) {
+    List<Alumno> alumnos = new ArrayList<>();
+    try {
+        // 1. Limitar número de resultados con .limit()
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION)
+            .orderBy("fechaInscripcion", Query.Direction.DESCENDING)
+            .limit(cantidad)
+            .get();
+        
+        QuerySnapshot querySnapshot = future.get();
+        
+        for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+            Alumno alumno = mapToAlumno(doc);
+            if (alumno != null) {
+                alumnos.add(alumno);
+            }
+        }
+        
+        System.out.println("✓ Últimos " + alumnos.size() + " alumnos registrados");
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error: " + e.getMessage());
+    }
+    return alumnos;
+}
+
+/* CONCEPTOS:
+   - .limit(n): Devuelve máximo n documentos
+   - Útil para paginación
+   - Combinar con .orderBy() para resultados consistentes
+   - .limitToLast(n): Últimos n documentos (requiere orderBy)
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  🔟  BATCH WRITE - OPERACIONES EN LOTE
+═══════════════════════════════════════════════════════════════════════════════
+
+public boolean crearMultiples(List<Alumno> alumnos) {
+    try {
+        // 1. Crear un batch (agrupa múltiples operaciones)
+        WriteBatch batch = db.batch();
+        
+        // 2. Agregar todas las operaciones al batch
+        for (Alumno alumno : alumnos) {
+            DocumentReference docRef = db.collection(COLLECTION).document();
+            alumno.setId(docRef.getId());
+            
+            Map<String, Object> data = alumnoToMap(alumno);
+            batch.set(docRef, data);  // ← Agregar al batch (no ejecuta todavía)
+        }
+        
+        // 3. Ejecutar todas las operaciones de una vez (atómico)
+        ApiFuture<List<WriteResult>> future = batch.commit();
+        future.get();
+        
+        System.out.println("✓ " + alumnos.size() + " alumnos creados en lote");
+        return true;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error en batch: " + e.getMessage());
+        return false;
+    }
+}
+
+/* VENTAJAS DE BATCH:
+   - Operación ATÓMICA: Todo se ejecuta o nada
+   - Más eficiente que operaciones individuales
+   - Reduce latencia de red
+   - Límite: Máximo 500 operaciones por batch
+   - Operaciones soportadas: set(), update(), delete()
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  1️⃣1️⃣  COUNT - CONTAR DOCUMENTOS
+═══════════════════════════════════════════════════════════════════════════════
+
+public int contarAlumnos() {
+    try {
+        // OPCIÓN 1: Obtener documentos y contar (menos eficiente)
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION).get();
+        QuerySnapshot querySnapshot = future.get();
+        
+        int count = querySnapshot.size();
+        System.out.println("✓ Total de alumnos: " + count);
+        return count;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al contar: " + e.getMessage());
+        return 0;
+    }
+}
+
+public int contarAlumnosPorCurso(String curso) {
+    try {
+        // OPCIÓN 2: Contar con filtro
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION)
+            .whereEqualTo("curso", curso)
+            .get();
+        
+        QuerySnapshot querySnapshot = future.get();
+        int count = querySnapshot.size();
+        
+        System.out.println("✓ Alumnos en " + curso + ": " + count);
+        return count;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error: " + e.getMessage());
+        return 0;
+    }
+}
+
+/* NOTA:
+   - Firebase NO tiene método .count() directo
+   - Debes obtener documentos y usar .size()
+   - Para grandes colecciones, considera mantener un contador separado
+   - Firestore cobra por documento leído, incluso al contar
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  1️⃣2️⃣  TRANSACTION - OPERACIONES TRANSACCIONALES
+═══════════════════════════════════════════════════════════════════════════════
+
+public boolean transferirPuntos(String alumnoIdOrigen, String alumnoIdDestino, int puntos) {
+    try {
+        // 1. Ejecutar operación dentro de una transacción
+        ApiFuture<String> transaction = db.runTransaction(trans -> {
+            // 2. Leer documentos dentro de la transacción
+            DocumentReference origenRef = db.collection(COLLECTION).document(alumnoIdOrigen);
+            DocumentReference destinoRef = db.collection(COLLECTION).document(alumnoIdDestino);
+            
+            DocumentSnapshot origenDoc = trans.get(origenRef).get();
+            DocumentSnapshot destinoDoc = trans.get(destinoRef).get();
+            
+            // 3. Validar y calcular nuevos valores
+            Long puntosOrigen = origenDoc.getLong("puntos");
+            Long puntosDestino = destinoDoc.getLong("puntos");
+            
+            if (puntosOrigen == null || puntosOrigen < puntos) {
+                throw new Exception("Puntos insuficientes");
+            }
+            
+            // 4. Escribir cambios (se ejecutan automáticamente si todo OK)
+            trans.update(origenRef, "puntos", puntosOrigen - puntos);
+            trans.update(destinoRef, "puntos", puntosDestino + puntos);
+            
+            return "Transferencia exitosa";
+        });
+        
+        String result = transaction.get();
+        System.out.println("✓ " + result);
+        return true;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error en transacción: " + e.getMessage());
+        return false;
+    }
+}
+
+/* TRANSACCIONES:
+   - ATOMICIDAD: Todo se ejecuta o nada (rollback automático si falla)
+   - CONSISTENCIA: Los datos siempre quedan en estado válido
+   - AISLAMIENTO: Otras operaciones no ven cambios hasta commit
+   - Ideal para: transferencias, contadores, operaciones dependientes
+   - Firestore reintenta automáticamente si hay conflictos
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  1️⃣3️⃣  CHECK EXISTS - VERIFICAR SI EXISTE DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+public boolean existeAlumno(String id) {
+    try {
+        DocumentReference docRef = db.collection(COLLECTION).document(id);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        
+        boolean existe = document.exists();
+        
+        if (existe) {
+            System.out.println("✓ El alumno existe");
+        } else {
+            System.out.println("✗ El alumno NO existe");
+        }
+        
+        return existe;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error: " + e.getMessage());
+        return false;
+    }
+}
+
+public boolean existeAlumnoPorEmail(String email) {
+    try {
+        // Verificar existencia por campo único (no por ID)
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION)
+            .whereEqualTo("email", email)
+            .limit(1)  // Solo necesitamos saber si existe 1
+            .get();
+        
+        QuerySnapshot querySnapshot = future.get();
+        boolean existe = !querySnapshot.isEmpty();
+        
+        System.out.println(existe ? "✓ Email ya registrado" : "✗ Email disponible");
+        return existe;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error: " + e.getMessage());
+        return false;
+    }
+}
+
+/* CASOS DE USO:
+   - Validar antes de crear (evitar duplicados)
+   - Verificar permisos/acceso
+   - Comprobar relaciones entre documentos
+   - .exists() es más eficiente que obtener todos los datos
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  📊 TABLA RESUMEN AMPLIADA
+═══════════════════════════════════════════════════════════════════════════════
+
+┌────────────────┬──────────────────────────────┬──────────────────────────┐
+│ OPERACIÓN      │ MÉTODO FIREBASE              │ TIPO FUTURE              │
+├────────────────┼──────────────────────────────┼──────────────────────────┤
+│ CREATE         │ docRef.set(data)             │ ApiFuture<WriteResult>   │
+│ READ ALL       │ collection.get()             │ ApiFuture<QuerySnapshot> │
+│ READ BY ID     │ document(id).get()           │ ApiFuture<DocSnapshot>   │
+│ UPDATE         │ docRef.update(data)          │ ApiFuture<WriteResult>   │
+│ DELETE         │ document(id).delete()        │ ApiFuture<WriteResult>   │
+│ FILTER         │ .whereEqualTo().get()        │ ApiFuture<QuerySnapshot> │
+│ ORDER BY       │ .orderBy(campo).get()        │ ApiFuture<QuerySnapshot> │
+│ LIMIT          │ .limit(n).get()              │ ApiFuture<QuerySnapshot> │
+│ BATCH          │ batch.commit()               │ ApiFuture<List<Write>>   │
+│ COUNT          │ querySnapshot.size()         │ int                      │
+│ TRANSACTION    │ db.runTransaction()          │ ApiFuture<T>             │
+│ EXISTS         │ document.exists()            │ boolean                  │
+└────────────────┴──────────────────────────────┴──────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
   ⚠️  MANEJO DE ERRORES
 ═══════════════════════════════════════════════════════════════════════════════
 
