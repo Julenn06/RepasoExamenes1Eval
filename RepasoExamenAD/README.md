@@ -305,19 +305,6 @@ view/
 
 ---
 
-## 🎯 Comparación de Proyectos
-
-| Proyecto | Tecnología Principal | Complejidad | Arquitectura MVC | Líneas de Código |
-|----------|---------------------|-------------|------------------|------------------|
-| **Repaso01** | Firebase + XML/DAT | ⭐⭐⭐ Media | ⭐⭐⭐⭐⭐⭐⭐⭐ 8/10 | ~500 |
-| **Repaso02** | XML Complejo | ⭐⭐⭐⭐ Media-Alta | ⭐⭐⭐⭐⭐⭐⭐⭐ 8/10 | ~400 |
-| **Repaso03** | DAT (Texto) | ⭐⭐⭐ Media | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 10/10 | ~600 |
-| **Repaso04** | XML con DOM | ⭐⭐⭐⭐ Media-Alta | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 10/10 | ~650 |
-| **Repaso05** | Firebase Relacional | ⭐⭐⭐⭐⭐ Alta | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 10/10 | ~800 |
-| **Repaso06** | Sistema Completo | ⭐⭐⭐⭐⭐⭐ Muy Alta | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 10/10 | ~2000 |
-
----
-
 ## 🛠️ Tecnologías Utilizadas
 
 ### **Lenguaje y Build:**
