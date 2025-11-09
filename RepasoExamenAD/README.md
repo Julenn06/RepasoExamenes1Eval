@@ -422,35 +422,6 @@ mvn exec:java -Dexec.mainClass="view.Main"
 
 ---
 
-## 📊 Recomendaciones de Estudio
-
-### **Para principiantes:**
-1. Empezar con **Repaso03** (DAT texto - más simple)
-2. Continuar con **Repaso04** (XML básico)
-3. Avanzar a **Repaso01** (Firebase + XML)
-
-### **Para nivel intermedio:**
-4. Estudiar **Repaso02** (XML complejo con jerarquías)
-5. Practicar **Repaso05** (Relaciones en Firestore)
-
-### **Para nivel avanzado:**
-6. Dominar **Repaso06** (Sistema completo con 70+ operaciones)
-
----
-
-## 🎓 Consejos para el Examen
-
-1. **Domina MVC:** Entiende qué va en cada capa (Model, View, Controller)
-2. **Practica CRUD:** Asegúrate de poder implementar Create, Read, Update, Delete
-3. **Manejo de excepciones:** Todos los proyectos usan try-catch apropiadamente
-4. **Formatos de fecha:** Familiarízate con SimpleDateFormat
-5. **Firebase:** Conoce la inicialización y operaciones básicas
-6. **XML:** Practica parsing con DOM y creación de documentos
-7. **Búsquedas:** Implementa búsquedas exactas y parciales
-8. **Exportación:** Saber exportar a diferentes formatos
-
----
-
 ## 📝 Notas Importantes
 
 - **Todos los proyectos compilan sin errores** ✅
