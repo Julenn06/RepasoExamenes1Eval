@@ -1,0 +1,260 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                   📚 MÉTODOS CLAVE FIREBASE - CRUD COMPLETO                ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+  1️⃣  CREATE - CREAR UN DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+public boolean crear(Alumno alumno) {
+    try {
+        // 1. Crear referencia a nuevo documento (Firebase genera ID automático)
+        DocumentReference docRef = db.collection(COLLECTION).document();
+        
+        // 2. Asignar el ID generado al objeto alumno
+        alumno.setId(docRef.getId());
+        
+        // 3. Convertir alumno a Map<String, Object> para Firebase
+        Map<String, Object> data = alumnoToMap(alumno);
+        
+        // 4. Guardar datos en Firestore (operación asíncrona)
+        ApiFuture<WriteResult> result = docRef.set(data);
+        result.get(); // ← Espera a que se complete la escritura
+        
+        System.out.println("✓ Alumno creado con ID: " + alumno.getId());
+        return true;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al crear alumno: " + e.getMessage());
+        return false;
+    }
+}
+
+/* CONCEPTOS CLAVE:
+   - DocumentReference: Referencia a un documento específico
+   - .document(): Sin parámetro = ID automático generado por Firebase
+   - .set(data): Crea o sobreescribe el documento completo
+   - ApiFuture<WriteResult>: Promesa de que la escritura se completará
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  2️⃣  READ ALL - LEER TODOS LOS DOCUMENTOS
+═══════════════════════════════════════════════════════════════════════════════
+
+public List<Alumno> leerTodos() {
+    List<Alumno> alumnos = new ArrayList<>();
+    try {
+        // 1. Iniciar consulta para obtener toda la colección
+        ApiFuture<QuerySnapshot> future = db.collection(COLLECTION).get();
+        
+        // 2. Esperar y obtener resultado (QuerySnapshot contiene todos los docs)
+        QuerySnapshot querySnapshot = future.get();
+        
+        // 3. Iterar sobre cada documento
+        for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+            // 4. Convertir documento a objeto Alumno
+            Alumno alumno = mapToAlumno(doc);
+            
+            if (alumno != null) {
+                alumnos.add(alumno);
+            }
+        }
+        
+        System.out.println("✓ Se encontraron " + alumnos.size() + " alumnos");
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al leer alumnos: " + e.getMessage());
+    }
+    return alumnos;
+}
+
+/* CONCEPTOS CLAVE:
+   - QuerySnapshot: Resultado de una consulta (múltiples documentos)
+   - .getDocuments(): Lista de todos los documentos encontrados
+   - QueryDocumentSnapshot: Un documento individual del resultado
+   - Devuelve lista vacía si hay error (no rompe el programa)
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  3️⃣  READ BY ID - LEER UN DOCUMENTO ESPECÍFICO
+═══════════════════════════════════════════════════════════════════════════════
+
+public Alumno leerPorId(String id) {
+    try {
+        // 1. Obtener referencia al documento específico por su ID
+        DocumentReference docRef = db.collection(COLLECTION).document(id);
+        
+        /* ALTERNATIVA (más lenta, no recomendada):
+         * DocumentReference docRef = db.collection(COLLECTION)
+         *     .whereEqualTo("id", id)
+         *     .get().get()
+         *     .getDocuments()
+         *     .get(0)
+         *     .getReference();
+         */
+        
+        // 2. Obtener el documento (operación asíncrona)
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        
+        // 3. Verificar si el documento existe
+        if (document.exists()) {
+            // 4. Convertir documento a objeto Alumno
+            Alumno alumno = mapToAlumno(document);
+            System.out.println("✓ Alumno encontrado: " + alumno.getNombreCompleto());
+            return alumno;
+            
+        } else {
+            System.out.println("✗ No se encontró alumno con ID: " + id);
+        }
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al leer alumno: " + e.getMessage());
+    }
+    return null;
+}
+
+/* CONCEPTOS CLAVE:
+   - DocumentSnapshot: Un único documento (puede existir o no)
+   - .document(id): Acceso directo por ID del documento
+   - .exists(): Verifica si el documento existe en Firestore
+   - DocumentReference vs DocumentSnapshot:
+     * Reference = dirección/puntero al documento
+     * Snapshot = contenido real del documento
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  4️⃣  UPDATE - ACTUALIZAR UN DOCUMENTO EXISTENTE
+═══════════════════════════════════════════════════════════════════════════════
+
+public boolean actualizar(Alumno alumno) {
+    try {
+        // 1. Obtener referencia al documento existente
+        DocumentReference docRef = db.collection(COLLECTION).document(alumno.getId());
+        
+        // 2. Convertir alumno actualizado a Map
+        Map<String, Object> data = alumnoToMap(alumno);
+        
+        // 3. Actualizar solo los campos especificados (no sobrescribe todo)
+        ApiFuture<WriteResult> result = docRef.update(data);
+        result.get(); // ← Espera a que se complete la actualización
+        
+        System.out.println("✓ Alumno actualizado: " + alumno.getNombreCompleto());
+        return true;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al actualizar alumno: " + e.getMessage());
+        return false;
+    }
+}
+
+/* CONCEPTOS CLAVE:
+   - .update(data): Actualiza campos específicos (mantiene otros campos)
+   - .set(data): Sobrescribe el documento completo
+   - Diferencia update vs set:
+     * update: Solo modifica campos enviados
+     * set: Reemplaza todo el documento (borra campos no enviados)
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  5️⃣  DELETE - ELIMINAR UN DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+public boolean eliminar(String id) {
+    try {
+        // 1. Eliminar documento directamente por ID
+        ApiFuture<WriteResult> result = db.collection(COLLECTION).document(id).delete();
+        result.get(); // ← Espera a que se complete la eliminación
+        
+        System.out.println("✓ Alumno eliminado con ID: " + id);
+        return true;
+        
+    } catch (Exception e) {
+        System.err.println("✗ Error al eliminar alumno: " + e.getMessage());
+        return false;
+    }
+}
+
+/* CONCEPTOS CLAVE:
+   - .delete(): Elimina el documento completo
+   - No lanza error si el documento no existe
+   - Las subcolecciones NO se eliminan automáticamente
+   - WriteResult contiene el timestamp de la operación
+*/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  📊 RESUMEN DE OPERACIONES FIREBASE
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────┬──────────────────────────┬────────────────────────────────┐
+│ OPERACIÓN   │ MÉTODO FIREBASE          │ TIPO DE FUTURE                 │
+├─────────────┼──────────────────────────┼────────────────────────────────┤
+│ CREATE      │ docRef.set(data)         │ ApiFuture<WriteResult>         │
+│ READ ALL    │ collection.get()         │ ApiFuture<QuerySnapshot>       │
+│ READ BY ID  │ document(id).get()       │ ApiFuture<DocumentSnapshot>    │
+│ UPDATE      │ docRef.update(data)      │ ApiFuture<WriteResult>         │
+│ DELETE      │ document(id).delete()    │ ApiFuture<WriteResult>         │
+└─────────────┴──────────────────────────┴────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  🔑 DIFERENCIAS CLAVE
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 QuerySnapshot vs DocumentSnapshot
+├─ QuerySnapshot:  Resultado de consulta (múltiples documentos)
+│  └─ Métodos: .getDocuments(), .size(), .isEmpty()
+│
+└─ DocumentSnapshot: Un único documento
+   └─ Métodos: .exists(), .getData(), .getString(), .getLong()
+
+🔗 DocumentReference vs DocumentSnapshot
+├─ DocumentReference: "Dirección" del documento (puntero)
+│  └─ Métodos: .get(), .set(), .update(), .delete()
+│
+└─ DocumentSnapshot: "Contenido" del documento (datos)
+   └─ Métodos: .exists(), .getData(), .toObject()
+
+⏳ ApiFuture Pattern
+├─ 1. ApiFuture<T> future = operación();  // Inicia operación asíncrona
+└─ 2. T resultado = future.get();         // Espera y obtiene resultado
+
+📝 .set() vs .update()
+├─ .set(data):    Sobrescribe TODO el documento
+└─ .update(data): Solo actualiza campos especificados
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  ⚠️  MANEJO DE ERRORES
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ PATRÓN RECOMENDADO:
+try {
+    ApiFuture<T> future = operación();
+    T resultado = future.get(); // Puede lanzar InterruptedException, ExecutionException
+    
+    // Procesar resultado...
+    
+} catch (Exception e) {
+    System.err.println("✗ Error: " + e.getMessage());
+    // Devolver valor por defecto (null, false, lista vacía, etc.)
+}
+
+❌ EVITAR:
+- Propagar excepciones con throws (peor experiencia usuario)
+- Hacer .get().get() sin separar (difícil de leer)
+- No validar .exists() antes de acceder a documento
+
+
+═══════════════════════════════════════════════════════════════════════════════
+  📚 RECURSOS ADICIONALES
+═══════════════════════════════════════════════════════════════════════════════
+
+Firebase Admin SDK: https://firebase.google.com/docs/admin/setup
+Firestore Java API: https://googleapis.dev/java/google-cloud-firestore/latest/
+Query Examples: https://firebase.google.com/docs/firestore/query-data/queries

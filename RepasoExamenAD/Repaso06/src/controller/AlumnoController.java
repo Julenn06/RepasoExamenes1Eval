@@ -78,7 +78,12 @@ public class AlumnoController {
 	 */
 	public Alumno leerPorId(String id) {
 		try {
+			// Porque el id del documento es el ID del alumno
 			DocumentReference docRef = db.collection(COLLECTION).document(id);
+			/*
+			 * DocumentReference docRef = db.collection(COLLECTION).whereEqualTo("id",
+			 * id).get().get().getDocuments() .get(0).getReference();
+			 */
 			ApiFuture<DocumentSnapshot> future = docRef.get();
 			DocumentSnapshot document = future.get();
 
