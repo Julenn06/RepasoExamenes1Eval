@@ -1,0 +1,15 @@
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\bin\Debug\net8.0\Repaso01.exe
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\bin\Debug\net8.0\Repaso01.deps.json
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\bin\Debug\net8.0\Repaso01.runtimeconfig.json
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\bin\Debug\net8.0\Repaso01.dll
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\bin\Debug\net8.0\Repaso01.pdb
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.AssemblyInfoInputs.cache
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.AssemblyInfo.cs
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.csproj.CoreCompileInputs.cache
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.sourcelink.json
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.dll
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\refint\Repaso01.dll
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.pdb
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\Repaso01.genruntimeconfig.cache
+C:\Users\julen.fernandez\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso01\Repaso01\obj\Debug\net8.0\ref\Repaso01.dll
