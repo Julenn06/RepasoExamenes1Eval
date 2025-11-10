@@ -30,6 +30,27 @@ public boolean crear(Alumno alumno) {
     }
 }
 
+Para crear usuario :
+private Map<String, Object> alumnoToMap(Alumno alumno) {
+		Map<String, Object> data = new HashMap<>();
+		data.put("id", alumno.getId());
+		data.put("nombre", alumno.getNombre());
+		data.put("apellidos", alumno.getApellidos());
+		data.put("dni", alumno.getDni());
+		data.put("email", alumno.getEmail());
+		data.put("telefono", alumno.getTelefono());
+		data.put("fechaNacimiento", alumno.getFechaNacimiento());
+		data.put("direccion", alumno.getDireccion());
+		data.put("ciudad", alumno.getCiudad());
+		data.put("codigoPostal", alumno.getCodigoPostal());
+		data.put("idCurso", alumno.getIdCurso());
+		data.put("estado", alumno.getEstado());
+		data.put("fechaMatriculacion", alumno.getFechaMatriculacion());
+		data.put("notaMedia", alumno.getNotaMedia());
+		data.put("creditosAprobados", alumno.getCreditosAprobados());
+		return data;
+	}
+
 /* CONCEPTOS CLAVE:
    - DocumentReference: Referencia a un documento específico
    - .document(): Sin parámetro = ID automático generado por Firebase
