@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\models\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\models\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\models\\libro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\models\\libro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\models\\estudiante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\models\\estudiante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\data\\datagenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\data\\datagenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\ejercicios\\ejerciciosany.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\ejercicios\\ejerciciosany.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|c:\\users\\deust\\desktop\\repasoexamenes1eval\\repasoexamenlinq\\repaso01\\repaso01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07A2E420-36C9-495F-A741-0C2E3995FA31}|Repaso01\\Repaso01.csproj|solutionrelative:repaso01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Estudiante.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Estudiante.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Models\\Estudiante.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Estudiante.cs",
+              "RelativeToolTip": "Repaso01\\Models\\Estudiante.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:32:03.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Empleado.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Empleado.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Models\\Empleado.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Empleado.cs",
+              "RelativeToolTip": "Repaso01\\Models\\Empleado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:31:49.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Producto.cs",
+              "RelativeToolTip": "Repaso01\\Models\\Producto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:31:44.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Libro.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Libro.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Models\\Libro.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Models\\Libro.cs",
+              "RelativeToolTip": "Repaso01\\Models\\Libro.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:31:45.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DataGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Data\\DataGenerator.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Data\\DataGenerator.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Data\\DataGenerator.cs",
+              "RelativeToolTip": "Repaso01\\Data\\DataGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:31:58.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EjerciciosAny.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Ejercicios\\EjerciciosAny.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Ejercicios\\EjerciciosAny.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Ejercicios\\EjerciciosAny.cs",
+              "RelativeToolTip": "Repaso01\\Ejercicios\\EjerciciosAny.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:31:54.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Program.cs",
+              "RelativeDocumentMoniker": "Repaso01\\Program.cs",
+              "ToolTip": "C:\\Users\\deust\\Desktop\\RepasoExamenes1Eval\\RepasoExamenLINQ\\Repaso01\\Repaso01\\Program.cs",
+              "RelativeToolTip": "Repaso01\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T18:29:34.491Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\bin\Debug\net8.0\Repaso03.exe
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\bin\Debug\net8.0\Repaso03.deps.json
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\bin\Debug\net8.0\Repaso03.runtimeconfig.json
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\bin\Debug\net8.0\Repaso03.dll
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\bin\Debug\net8.0\Repaso03.pdb
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.AssemblyInfoInputs.cache
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.AssemblyInfo.cs
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.csproj.CoreCompileInputs.cache
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.sourcelink.json
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.dll
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\refint\Repaso03.dll
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.pdb
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\Repaso03.genruntimeconfig.cache
+C:\Users\deust\Desktop\RepasoExamenes1Eval\RepasoExamenLINQ\Repaso03\Repaso03\obj\Debug\net8.0\ref\Repaso03.dll
