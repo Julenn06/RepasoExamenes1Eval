@@ -5,6 +5,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnimalesRemoteService } from '../services/animales.remote';
 import { Animal } from '../animal/animal';
+import { Router } from '@angular/router';
 
 /**
  * Componente para gestionar animales
@@ -36,7 +37,7 @@ export class Animales {
   // Lista de animales
   todosLosAnimales: Animal[] = [];
 
-  constructor(private cdr: ChangeDetectorRef, private remote : AnimalesRemoteService){}
+  constructor(private cdr: ChangeDetectorRef, private remote : AnimalesRemoteService, private router: Router){}
 
   anadirAnimal() {
     // Validar que los campos no estén vacíos
@@ -139,6 +140,11 @@ export class Animales {
       error: (err) => console.error('Error eliminando animal', err)
     });
   }
+
+
+  unPar() {
+    this.router.navigate(['/unPar']);
+}
 
   limpiarDatos() {
     this.crearAnimalInput = true;
