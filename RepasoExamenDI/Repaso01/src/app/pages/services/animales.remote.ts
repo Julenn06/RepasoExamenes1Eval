@@ -1,7 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { map, Observable, switchMap, take } from 'rxjs';
-import { Animal } from '../animal/animal';
+import {
+  HttpClient
+} from '@angular/common/http';
+import {
+  inject,
+  Injectable
+} from '@angular/core';
+import {
+  map,
+  Observable,
+  switchMap,
+  take
+} from 'rxjs';
+import {
+  Animal
+} from '../animal/animal';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +23,27 @@ export class AnimalesRemoteService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/animales';
 
-  getAllAnimales(): Observable<Animal[]> {
-    return this.http.get<Animal[]>(this.apiUrl);
+  getAllAnimales(): Observable < Animal[] > {
+    return this.http.get < Animal[] > (this.apiUrl);
   }
 
-  getFeaturedAnimales(limit = 4): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`${this.apiUrl}?_limit=${limit}`);
+  getFeaturedAnimales(limit = 4): Observable < Animal[] > {
+    return this.http.get < Animal[] > (`${this.apiUrl}?_limit=${limit}`);
   }
 
-  getAnimalById(id: number): Observable<Animal> {
-    return this.http.get<Animal>(`${this.apiUrl}/${String(id)}`);
+  getAnimalById(id: number): Observable < Animal > {
+    return this.http.get < Animal > (`${this.apiUrl}/${String(id)}`);
   }
 
-  getAnimalByName(name: string): Observable<Animal> {
-    return this.http.get<Animal[]>(`${this.apiUrl}?nombre=${encodeURIComponent(name)}`).pipe(
+  getAnimalByName(name: string): Observable < Animal > {
+    return this.http.get < Animal[] > (`${this.apiUrl}?nombre=${encodeURIComponent(name)}`).pipe(
       map(animals => {
         return animals[0];
       })
     );
   }
 
-  createAnimal(nombre: string, tipo?: string): Observable<Animal> {
+  createAnimal(nombre: string, tipo ? : string): Observable < Animal > {
     return this.getAllAnimales().pipe(
       take(1),
       switchMap((Animales) => {
@@ -46,21 +58,21 @@ export class AnimalesRemoteService {
           nombre: nombre,
           tipo: tipo || ''
         };
-        return this.http.post<Animal>(this.apiUrl, body);
+        return this.http.post < Animal > (this.apiUrl, body);
       })
     );
   }
 
-  updateAnimal(id: number, changes: Partial<Animal>): Observable<Animal> {
+  updateAnimal(id: number, changes: Partial < Animal > ): Observable < Animal > {
     // PATCH solo envía los cambios, no el ID completo
-    return this.http.patch<Animal>(`${this.apiUrl}/${String(id)}`, changes);
+    return this.http.patch < Animal > (`${this.apiUrl}/${String(id)}`, changes);
   }
 
-  deleteAnimal(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${String(id)}`);
+  deleteAnimal(id: number): Observable < void > {
+    return this.http.delete < void > (`${this.apiUrl}/${String(id)}`);
   }
 
-  deleteAnimalByName(name: string): Observable<void> {
+  deleteAnimalByName(name: string): Observable < void > {
     return this.getAnimalByName(name).pipe(
       switchMap(animal => {
         return this.deleteAnimal(Number(animal.id));

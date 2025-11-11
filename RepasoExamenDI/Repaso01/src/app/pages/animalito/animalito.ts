@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AnimalesRemoteService } from '../services/animales.remote';
-import { Animal } from '../animal/animal';
+import {
+  Component
+} from '@angular/core';
+import {
+  ActivatedRoute
+} from '@angular/router';
+import {
+  AnimalesRemoteService
+} from '../services/animales.remote';
+import {
+  Animal
+} from '../animal/animal';
 
 @Component({
   selector: 'app-animalito',

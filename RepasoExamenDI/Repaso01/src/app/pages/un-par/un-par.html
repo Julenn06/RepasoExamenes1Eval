@@ -2,8 +2,8 @@
 
 <ul>
   @for (animal of animalesTop; track animal.id) {
-    <button [routerLink]="['/animalito', animal.id]">{{animal.id}} -- {{animal.nombre}} -- {{animal.tipo}}</button>
-    <br>
-    <br>
+  <button [routerLink]="['/animalito', animal.id]">{{animal.id}} -- {{animal.nombre}} -- {{animal.tipo}}</button>
+  <br>
+  <br>
   }
 </ul>
