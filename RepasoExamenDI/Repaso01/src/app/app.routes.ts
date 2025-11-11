@@ -5,8 +5,8 @@ import { UnPar } from './pages/un-par/un-par';
 import { Animalito } from './pages/animalito/animalito';
 
 export const routes: Routes = [
-    {path: '', component: FirstView},
-    {path: 'animales', component: Animales},
-    {path: 'unPar', component: UnPar},
-    {path: 'animalito/:id', component: Animalito}
+  { path: '', component: FirstView },
+  { path: 'animales', component: Animales },
+  { path: 'unPar', component: UnPar },
+  { path: 'animalito/:id', component: Animalito }
 ];

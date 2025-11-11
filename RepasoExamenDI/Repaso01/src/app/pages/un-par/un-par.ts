@@ -13,7 +13,8 @@ export class UnPar {
 
   animalesTop: Animal[] = [];
 
-  constructor(private remote: AnimalesRemoteService, private cdr: ChangeDetectorRef, private router : Router) {};
+  constructor(private remote: AnimalesRemoteService, private cdr: ChangeDetectorRef, private router: Router) {}
+
   ngOnInit(): void {
     this.remote.getFeaturedAnimales(4).subscribe({
       next: (ah) => {

@@ -20,24 +20,23 @@ import { Router } from '@angular/router';
 export class Animales {
 
   // Estados de la UI
-  crearAnimalInput = true;
-  editarAnimalInput = true;
-  
+
   // Datos del formulario de creación
   nombre: string = "";
   tipo: string = "";
-  
+
   // Datos del formulario de edición
   nombreNuevo: string = "";
   tipoNuevo: string = "";
-  
-  // ID para búsqueda, edición y eliminación
+
+  // ID y Nombre para búsqueda, edición y eliminación
   idAnimal: number = 0;
-  
+  nombreAnimal: string = "";
+
   // Lista de animales
   todosLosAnimales: Animal[] = [];
 
-  constructor(private cdr: ChangeDetectorRef, private remote : AnimalesRemoteService, private router: Router){}
+  constructor(private cdr: ChangeDetectorRef, private remote: AnimalesRemoteService, private router: Router) {}
 
   anadirAnimal() {
     // Validar que los campos no estén vacíos
@@ -89,7 +88,26 @@ export class Animales {
     });
   }
 
+  verAnimalPorNombre() {
+    // Validar que el Nombre sea válido
+    if (!this.nombreAnimal || this.nombreAnimal == null) {
+      console.error('Nombre inválido');
+      return;
+    }
 
+    this.remote.getAnimalByName(this.nombreAnimal).subscribe({
+      next: (animal) => {
+        this.todosLosAnimales = [animal];
+        console.log('Animal encontrado:', animal);
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error cargando Animal por ID', err);
+        this.todosLosAnimales = []; // Limpiar lista si no se encuentra
+        this.cdr.markForCheck();
+      }
+    });
+  }
 
   nuevosDatos() {
     // Validar que el ID sea válido
@@ -141,19 +159,16 @@ export class Animales {
     });
   }
 
-
   unPar() {
     this.router.navigate(['/unPar']);
-}
+  }
 
   limpiarDatos() {
-    this.crearAnimalInput = true;
     this.nombre = "";
     this.tipo = "";
   }
 
   limpiarDatosEdicion() {
-    this.editarAnimalInput = true;
     this.nombreNuevo = "";
     this.tipoNuevo = "";
   }

@@ -9,10 +9,9 @@ import { Router } from '@angular/router';
 })
 export class FirstView {
 
-  constructor(private router : Router) {}
-
+  constructor(private router: Router) {}
 
   animales() {
     this.router.navigate(['/animales']);
-}
+  }
 }

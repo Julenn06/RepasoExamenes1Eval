@@ -12,19 +12,14 @@ import { Animal } from '../animal/animal';
 export class Animalito {
 
   elBoss: Animal[] = [];
+  id: number = 0;
 
-  constructor(private route: ActivatedRoute, private remote: AnimalesRemoteService ) {}
-
-  id : number = 0;
+  constructor(private route: ActivatedRoute, private remote: AnimalesRemoteService) {}
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.remote.getAnimalById(this.id).subscribe({
-      next: (hs) =>
-        this.elBoss = [hs]  
+      next: (hs) => this.elBoss = [hs]
     });
   }
-
-
-
 }

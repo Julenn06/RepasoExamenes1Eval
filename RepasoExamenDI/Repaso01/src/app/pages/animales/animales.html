@@ -3,8 +3,8 @@
 
   <!-- Sección de Crear Animal -->
   <section class="seccion-crear">
-    <h3>Crear Nuevo Animal</h3>    
-    <div [hidden]="crearAnimalInput" class="formulario">
+    <h3>Crear Nuevo Animal</h3>
+    <div class="formulario">
       <input type="text" id="nombre" [(ngModel)]="nombre" placeholder="Nombre del animal" required>
       <input type="text" id="tipo" [(ngModel)]="tipo" placeholder="Tipo de animal">
       <div class="botones-formulario">
@@ -18,9 +18,9 @@
   <section class="seccion-editar">
     <h3>Editar Animal</h3>
     <label>ID del animal a editar:</label>
-    <input type="number" name="id" id="idAnimalEditar" [(ngModel)]="idAnimal" [hidden]="!editarAnimalInput" min="1">
-    
-    <div [hidden]="editarAnimalInput" class="formulario">
+    <input type="number" name="id" id="idAnimalEditar" [(ngModel)]="idAnimal" min="1">
+
+    <div class="formulario">
       <input type="text" id="nombreNuevo" [(ngModel)]="nombreNuevo" placeholder="Nuevo nombre (opcional)">
       <input type="text" id="tipoNuevo" [(ngModel)]="tipoNuevo" placeholder="Nuevo tipo (opcional)">
       <div class="botones-formulario">
@@ -34,11 +34,14 @@
   <section class="seccion-consultas">
     <h3>Consultas</h3>
     <button (click)="verAnimales()" class="btn-info">👁️ Ver todos los animales</button>
-    
+
     <div class="consulta-por-id">
       <label>Buscar por ID:</label>
-      <input type="number" name="idBuscar" [(ngModel)]="idAnimal" [hidden]="!crearAnimalInput && !editarAnimalInput" min="1" placeholder="ID">
+      <input type="number" name="idBuscar" [(ngModel)]="idAnimal" min="1" placeholder="ID">
       <button (click)="verAnimalPorId()" class="btn-info">🔍 Buscar</button>
+      <label>Buscar por Nombre: </label>
+      <input type="text" name="idBuscar" [(ngModel)]="nombreAnimal" min="1" placeholder="Name">
+      <button (click)="verAnimalPorNombre()" class="btn-info">🔍 Buscar</button>
     </div>
   </section>
 
@@ -47,7 +50,7 @@
     <h3>Eliminar Animal</h3>
     <div class="consulta-por-id">
       <label>ID del animal a eliminar:</label>
-      <input type="number" name="idEliminar" [(ngModel)]="idAnimal" [hidden]="!crearAnimalInput && !editarAnimalInput" min="1" placeholder="ID">
+      <input type="number" name="idEliminar" [(ngModel)]="idAnimal" min="1" placeholder="ID">
       <button (click)="eliminarAnimal()" class="btn-danger">🗑️ Eliminar</button>
     </div>
   </section>
@@ -62,19 +65,18 @@
     <h3>Resultados ({{ todosLosAnimales.length }} animales)</h3>
     <div class="lista-animales">
       @if (todosLosAnimales.length === 0) {
-        <p class="sin-resultados">No hay animales para mostrar</p>
+      <p class="sin-resultados">No hay animales para mostrar</p>
       } @else {
-        <ul>
-          @for (animal of todosLosAnimales; track animal.id) {
-            <li class="animal-item">
-              <span class="animal-id">ID: {{ animal.id }}</span>
-              <strong class="animal-nombre">{{ animal.nombre }}</strong>
-              <em class="animal-tipo">{{ animal.tipo }}</em>
-            </li>
-          }
-        </ul>
+      <ul>
+        @for (animal of todosLosAnimales; track animal.id) {
+        <li class="animal-item">
+          <span class="animal-id">ID: {{ animal.id }}</span>
+          <strong class="animal-nombre">{{ animal.nombre }}</strong>
+          <em class="animal-tipo">{{ animal.tipo }}</em>
+        </li>
+        }
+      </ul>
       }
     </div>
   </section>
 </div>
-
