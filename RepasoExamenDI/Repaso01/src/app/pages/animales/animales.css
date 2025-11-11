@@ -1,0 +1,212 @@
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+h3 {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 5px;
+}
+
+/* Secciones */
+section {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Formularios */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.formulario input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.formulario input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.botones-formulario {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #45a049;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #da190b;
+}
+
+.btn-info {
+  background-color: #2196F3;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #0b7dda;
+}
+
+.btn-danger {
+  background-color: #ff5722;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #e64a19;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+label {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Consulta por ID */
+.consulta-por-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.consulta-por-id input {
+  flex: 0 0 150px;
+  margin: 0;
+}
+
+.consulta-por-id button {
+  flex: 0 0 auto;
+}
+
+.seccion-resultados {
+  background: #fff;
+}
+
+.lista-animales ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.animal-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  border-left: 4px solid #4CAF50;
+  transition: all 0.3s ease;
+}
+
+.animal-item:hover {
+  background: #e8f5e9;
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animal-id {
+  background: #4CAF50;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.animal-nombre {
+  color: #333;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.animal-tipo {
+  color: #666;
+  font-size: 0.95rem;
+  background: #e0e0e0;
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+
+.sin-resultados {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 30px;
+  font-size: 1.1rem;
+}

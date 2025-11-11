@@ -44,7 +44,8 @@ export class AnimalesRemoteService {
     );
   }
 
-  updateAnimal(id: number, changes: Partial<Animal>): Observable<Animal> {
+    updateAnimal(id: number, changes: Partial<Animal>): Observable<Animal> {
+    // PATCH solo envía los cambios, no el ID completo
     return this.http.patch<Animal>(`${this.apiUrl}/${String(id)}`, changes);
   }
 
