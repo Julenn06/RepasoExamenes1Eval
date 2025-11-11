@@ -1,69 +1,79 @@
 {
   "animales": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Tom",
       "tipo": "gato"
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Yoda",
       "tipo": "perro"
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Luna",
       "tipo": "conejo"
     },
     {
-      "id": 4,
+      "id": "4",
       "nombre": "Rex",
       "tipo": "perro"
     },
     {
-      "id": 5,
+      "id": "5",
       "nombre": "Nemo",
       "tipo": "pez"
     },
     {
-      "id": 6,
+      "id": "6",
       "nombre": "Kiwi",
       "tipo": "loro"
     },
     {
-      "id": 7,
+      "id": "7",
       "nombre": "Simba",
       "tipo": "gato"
     },
     {
-      "id": 8,
+      "id": "8",
       "nombre": "Rocky",
       "tipo": "hámster"
     },
     {
-      "id": 9,
+      "id": "9",
       "nombre": "Coco",
       "tipo": "tortuga"
     },
     {
-      "id": 10,
+      "id": "10",
       "nombre": "Milo",
       "tipo": "hurón"
     },
     {
-      "id": 11,
+      "id": "11",
       "nombre": "qqq",
       "tipo": "eee"
     },
     {
-      "id": 12,
+      "id": "12",
       "nombre": "wwwwww",
       "tipo": "gergerg"
     },
     {
-      "id": 13,
+      "id": "13",
       "nombre": "dsadasa",
       "tipo": "sadasdasdasd"
+    },
+    {
+      "id": "14",
+      "nombre": "julen",
+      "tipo": "quue"
+    },
+    {
+      "id": "15",
+      "nombre": "1212",
+      "tipo": "1212"
     }
   ]
 }

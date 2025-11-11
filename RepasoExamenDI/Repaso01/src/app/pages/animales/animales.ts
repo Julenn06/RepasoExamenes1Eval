@@ -38,7 +38,7 @@ export class Animales {
   }
 
   verAnimales() {
-            this.remote.getAllAnimales().subscribe({
+    this.remote.getAllAnimales().subscribe({
       next: (hs) => {
         this.todosLosAnimales = hs;
         this.cdr.markForCheck();
@@ -49,14 +49,14 @@ export class Animales {
     });
   }
 
-  vetAnimalPorId() {
-             this.remote.getAnimalById(this.idAnimal).subscribe({
+  verAnimalPorId() {
+    this.remote.getAnimalById(this.idAnimal).subscribe({
       next: (hs) => {
         this.todosLosAnimales = [hs];
         this.cdr.markForCheck();
       },
       error: (err) => {
-        console.error('Error cargando Animales', err);
+        console.error('Error cargando Animal por ID', err);
       }
     });
   }
