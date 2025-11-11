@@ -59,4 +59,12 @@ export class AnimalesRemoteService {
   deleteAnimal(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${String(id)}`);
   }
+
+  deleteAnimalByName(name: string): Observable<void> {
+    return this.getAnimalByName(name).pipe(
+      switchMap(animal => {
+        return this.deleteAnimal(Number(animal.id));
+      })
+    );
+  }
 }

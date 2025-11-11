@@ -145,7 +145,7 @@ export class Animales {
     }
 
     // Confirmación antes de eliminar
-    if (!confirm(`¿Está seguro de eliminar el animal con ID ${this.idAnimal}?`)) {
+    if (!confirm(`Esta seguro de eliminar el animal con ID ${this.idAnimal}?`)) {
       return;
     }
 
@@ -154,6 +154,28 @@ export class Animales {
         console.log(`Animal con ID ${this.idAnimal} eliminado`);
         this.verAnimales(); // Actualizar lista
         this.idAnimal = 0; // Limpiar ID
+      },
+      error: (err) => console.error('Error eliminando animal', err)
+    });
+  }
+
+  eliminarAnimalPorNombre() {
+    // Validar que el nombre sea válido
+    if (!this.nombreAnimal || this.nombreAnimal.trim() === '') {
+      console.error('Nombre inválido para eliminar');
+      return;
+    }
+
+    // Confirmación antes de eliminar
+    if (!confirm(`Esta seguro de eliminar el animal con Nombre ${this.nombreAnimal}?`)) {
+      return;
+    }
+
+    this.remote.deleteAnimalByName(this.nombreAnimal).subscribe({
+      next: () => {
+        console.log(`Animal con Nombre ${this.nombreAnimal} eliminado`);
+        this.verAnimales(); // Actualizar lista
+        this.nombreAnimal = ""; // Limpiar nombre
       },
       error: (err) => console.error('Error eliminando animal', err)
     });
