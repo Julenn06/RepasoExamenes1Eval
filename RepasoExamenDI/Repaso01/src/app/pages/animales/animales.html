@@ -1,0 +1,24 @@
+<button (click)="crearAnimal()" [hidden]="!crearAnimalInput">Crear animal</button>
+<button [hidden]="crearAnimalInput" (click)="anadirAnimal()">Añadir animal</button>
+
+<button (click)="verAnimales()">Ver todos los animales</button>
+<button (click)="vetAnimalPorId()">Ver animal por Id</button>
+<button (click)="editarAnimal()">Editar animal</button>
+<button (click)="eliminarAnimal()">Eliminar animal por Id</button>
+
+<input type="text" id="nombre" [hidden]="crearAnimalInput" [(ngModel)]="nombre" placeholder="nombre">
+<input type="text" id="tipo" [hidden]="crearAnimalInput" [(ngModel)]="tipo" placeholder="tipo">
+<input type="number" name="id" id="idAnimal" [(ngModel)]="idAnimal" [hidden]="!crearAnimalInput">
+
+<div>
+  <ul>
+    @for (animal of todosLosAnimales; track animal.id) {
+      <li>
+        <span>{{ animal.id }}</span> - 
+        <strong>{{ animal.nombre }}</strong> - 
+        <em>{{ animal.tipo }}</em>
+      </li>
+    }
+  </ul>
+</div>
+

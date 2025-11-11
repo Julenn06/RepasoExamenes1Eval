@@ -1,0 +1,69 @@
+{
+  "animales": [
+    {
+      "id": 1,
+      "nombre": "Tom",
+      "tipo": "gato"
+    },
+    {
+      "id": 2,
+      "nombre": "Yoda",
+      "tipo": "perro"
+    },
+    {
+      "id": 3,
+      "nombre": "Luna",
+      "tipo": "conejo"
+    },
+    {
+      "id": 4,
+      "nombre": "Rex",
+      "tipo": "perro"
+    },
+    {
+      "id": 5,
+      "nombre": "Nemo",
+      "tipo": "pez"
+    },
+    {
+      "id": 6,
+      "nombre": "Kiwi",
+      "tipo": "loro"
+    },
+    {
+      "id": 7,
+      "nombre": "Simba",
+      "tipo": "gato"
+    },
+    {
+      "id": 8,
+      "nombre": "Rocky",
+      "tipo": "hámster"
+    },
+    {
+      "id": 9,
+      "nombre": "Coco",
+      "tipo": "tortuga"
+    },
+    {
+      "id": 10,
+      "nombre": "Milo",
+      "tipo": "hurón"
+    },
+    {
+      "id": 11,
+      "nombre": "qqq",
+      "tipo": "eee"
+    },
+    {
+      "id": 12,
+      "nombre": "wwwwww",
+      "tipo": "gergerg"
+    },
+    {
+      "id": 13,
+      "nombre": "dsadasa",
+      "tipo": "sadasdasdasd"
+    }
+  ]
+}

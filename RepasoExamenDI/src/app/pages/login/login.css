@@ -1,6 +1,0 @@
-.custom-form{background:var(--card); border-radius:12px; padding:1.5rem; box-shadow:0 10px 30px rgba(2,6,23,0.06)}
-.custom-form h1{margin:0 0 1rem; font-size:1.4rem}
-.custom-form input{margin-bottom:0.65rem}
-.custom-form button{width:100%; padding:0.75rem}
-.custom-form .aux{margin-top:0.6rem; text-align:center; color:var(--muted); font-size:0.95rem}
-.custom-form .aux a{color:var(--accent)}
