@@ -5,11 +5,15 @@ import javax.swing.JLabel;
 public class HilosService implements Runnable {
 
 	private JLabel lblCronometro;
+	private JLabel lblDescanso;
 	private boolean enPausa;
 	private boolean terminado = false;
+	private boolean enDescanso = false;
+	private long inicioDescanso = 0L;
 
-	public HilosService(JLabel lblCronometro) {
+	public HilosService(JLabel lblCronometro, JLabel lblDescanso) {
 		this.lblCronometro = lblCronometro;
+		this.lblDescanso = lblDescanso;
 	}
 
 	public void run() {
@@ -20,9 +24,15 @@ public class HilosService implements Runnable {
 		long inicioPausaLocal = 0L;
 
 		while (!terminado) {
-			if (enPausa) {
+			if (enPausa || enDescanso) {
 				if (inicioPausaLocal == 0L) {
 					inicioPausaLocal = System.currentTimeMillis();
+				}
+
+				// Si estamos en descanso, actualizar el contador de descanso
+				if (enDescanso) {
+					long tiempoDescanso = (System.currentTimeMillis() - inicioDescanso) / 1000;
+					lblDescanso.setText(formatear((int) tiempoDescanso));
 				}
 			} else {
 				if (inicioPausaLocal != 0L) {
@@ -85,6 +95,19 @@ public class HilosService implements Runnable {
 			enPausa = false;
 		} else {
 			enPausa = true;
+		}
+	}
+
+	public void descanso(JLabel lblDescanso) {
+		if (!enDescanso) {
+			// Iniciar descanso
+			enDescanso = true;
+			enPausa = false; // Asegurar que no esté en pausa normal
+			inicioDescanso = System.currentTimeMillis();
+		} else {
+			// Terminar descanso
+			enDescanso = false;
+			lblDescanso.setText("00:00:00");
 		}
 	}
 }
