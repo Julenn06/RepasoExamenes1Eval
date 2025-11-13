@@ -1,0 +1,69 @@
+{
+  "heroes": [
+    {
+      "id": "1",
+      "name": "Superman",
+      "power": "Superfuerza, vuelo, visión láser"
+    },
+    {
+      "id": "2",
+      "name": "Batman",
+      "power": "Inteligencia, artes marciales, tecnología"
+    },
+    {
+      "id": "3",
+      "name": "Wonder Woman",
+      "power": "Fuerza sobrehumana, agilidad, habilidades de combate"
+    },
+    {
+      "id": "4",
+      "name": "Flash",
+      "power": "Supervelocidad, reflejos acelerados"
+    },
+    {
+      "id": "5",
+      "name": "Green Lantern",
+      "power": "Anillo de poder que crea construcciones de energía"
+    },
+    {
+      "id": "6",
+      "name": "Aquaman",
+      "power": "Comunicación con la vida marina, fuerza sobrehumana"
+    },
+    {
+      "id": "7",
+      "name": "Cyborg",
+      "power": "Tecnología avanzada, fuerza y resistencia mejoradas"
+    },
+    {
+      "id": "8",
+      "name": "Martian Manhunter",
+      "power": "Cambio de forma, telepatía, vuelo"
+    },
+    {
+      "id": "9",
+      "name": "Green Arrow",
+      "power": "Tiro con arco experto, habilidades de combate"
+    },
+    {
+      "id": "11",
+      "name": "Black Canary",
+      "power": "Grito sónico, habilidades de combate"
+    },
+    {
+      "id": "12",
+      "name": "aña",
+      "power": "su tremenda espada"
+    },
+    {
+      "id": "13",
+      "name": "añaaa",
+      "power": "su tremendo espadote"
+    },
+    {
+      "id": 14,
+      "name": "f",
+      "power": "df"
+    }
+  ]
+}

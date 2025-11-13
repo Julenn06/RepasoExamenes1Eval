@@ -1,0 +1,17 @@
+<div class="home-page-container page-container">
+  <div class="home-welcome">
+    <h1>Heroes Universe</h1>
+    <button class="nav-button btn btn-primary" (click)="goToHeroesPage()">
+      Heroe guztiak ikusi
+    </button>
+  </div>
+
+  <div class="top-heroes-container">
+    <h2>Top Heroes</h2>
+    <div class="top-heroes-list">
+      <button *ngFor="let hero of topHeroes" class="top-hero-btn" [routerLink]="['/hero', hero.id]">
+        {{ hero.name }}
+      </button>
+    </div>
+  </div>
+</div>

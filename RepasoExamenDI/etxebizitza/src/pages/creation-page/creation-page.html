@@ -1,0 +1,172 @@
+<header>
+    <a [routerLink]="['/home']">< Home</a>
+</header>
+
+<div class="creation-container">
+  <h2>Crear Nueva Propiedad</h2>
+  
+  <form [formGroup]="houseForm" (ngSubmit)="onSubmit()" class="house-form">
+    
+    <!-- Información básica -->
+    <div class="form-section">
+      <h3>Información Básica</h3>
+      
+      <div class="form-group">
+        <label for="name">Nombre de la propiedad *</label>
+        <input 
+          type="text" 
+          id="name" 
+          formControlName="name" 
+          placeholder="Ej: Apartamento Centro"
+          [class.error]="houseForm.get('name')?.invalid && houseForm.get('name')?.touched">
+        @if (houseForm.get('name')?.invalid && houseForm.get('name')?.touched) {
+          <div class="error-message">El nombre es obligatorio</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="propertyType">Tipo de propiedad *</label>
+        <select id="propertyType" formControlName="propertyType" 
+                [class.error]="houseForm.get('propertyType')?.invalid && houseForm.get('propertyType')?.touched">
+          <option value="">Selecciona un tipo</option>
+          <option value="apartment">Apartamento</option>
+          <option value="detached">Casa unifamiliar</option>
+          <option value="garaje_plot">Garaje/Parcela</option>
+          <option value="office">Oficina</option>
+        </select>
+        @if (houseForm.get('propertyType')?.invalid && houseForm.get('propertyType')?.touched) {
+          <div class="error-message">El tipo de propiedad es obligatorio</div>
+        }
+      </div>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="form-section" formGroupName="location">
+      <h3>Ubicación</h3>
+      
+      <div class="form-group">
+        <label for="city">Ciudad *</label>
+        <input 
+          type="text" 
+          id="city" 
+          formControlName="city" 
+          placeholder="Ej: Bilbao"
+          [class.error]="houseForm.get('location.city')?.invalid && houseForm.get('location.city')?.touched">
+        @if (houseForm.get('location.city')?.invalid && houseForm.get('location.city')?.touched) {
+          <div class="error-message">La ciudad es obligatoria</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="address">Dirección *</label>
+        <input 
+          type="text" 
+          id="address" 
+          formControlName="address" 
+          placeholder="Ej: Calle Gran Vía 25"
+          [class.error]="houseForm.get('location.address')?.invalid && houseForm.get('location.address')?.touched">
+        @if (houseForm.get('location.address')?.invalid && houseForm.get('location.address')?.touched) {
+          <div class="error-message">La dirección es obligatoria</div>
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="lat">Latitud</label>
+          <input 
+            type="number" 
+            id="lat" 
+            formControlName="lat" 
+            placeholder="43.2627"
+            step="any">
+        </div>
+
+        <div class="form-group">
+          <label for="long">Longitud</label>
+          <input 
+            type="number" 
+            id="long" 
+            formControlName="long" 
+            placeholder="-2.9253"
+            step="any">
+        </div>
+      </div>
+    </div>
+
+    <!-- Precios -->
+    <div class="form-section">
+      <h3>Información de Precio</h3>
+      
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="isForSale">
+          <span class="checkmark"></span>
+          Disponible para venta
+        </label>
+      </div>
+
+      @if (houseForm.get('isForSale')?.value) {
+        <div class="form-group">
+          <label for="salePrice">Precio de venta (€) *</label>
+          <input 
+            type="number" 
+            id="salePrice" 
+            formControlName="salePrice" 
+            placeholder="350000"
+            min="0"
+            [class.error]="houseForm.get('salePrice')?.invalid && houseForm.get('salePrice')?.touched">
+          @if (houseForm.get('salePrice')?.invalid && houseForm.get('salePrice')?.touched) {
+            <div class="error-message">El precio de venta es obligatorio</div>
+          }
+        </div>
+      }
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="isForRent">
+          <span class="checkmark"></span>
+          Disponible para alquiler
+        </label>
+      </div>
+
+      @if (houseForm.get('isForRent')?.value) {
+        <div class="form-group">
+          <label for="rentPrice">Precio de alquiler mensual (€) *</label>
+          <input 
+            type="number" 
+            id="rentPrice" 
+            formControlName="rentPrice" 
+            placeholder="1200"
+            min="0"
+            [class.error]="houseForm.get('rentPrice')?.invalid && houseForm.get('rentPrice')?.touched">
+          @if (houseForm.get('rentPrice')?.invalid && houseForm.get('rentPrice')?.touched) {
+            <div class="error-message">El precio de alquiler es obligatorio</div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Imagen -->
+    <div class="form-section">
+      <h3>Imagen</h3>
+      <div class="form-group">
+        <label for="picture">URL de la imagen</label>
+        <input 
+          type="text" 
+          id="picture" 
+          formControlName="picture" 
+          placeholder="https://ejemplo.com/imagen.jpg">
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="houseForm.invalid">
+        Crear Propiedad
+      </button>
+    </div>
+  </form>
+</div>

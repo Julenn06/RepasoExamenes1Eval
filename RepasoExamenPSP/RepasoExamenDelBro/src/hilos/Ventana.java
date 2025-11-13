@@ -43,7 +43,7 @@ public class Ventana extends JFrame {
 	 * Create the frame.
 	 */
 	public Ventana() {
-		setTitle("Daniel Alonso Mendez");
+		setTitle("Julen");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 565, 254);

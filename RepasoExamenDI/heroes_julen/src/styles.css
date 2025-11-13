@@ -1,0 +1,199 @@
+:root {
+  --color-primary: #263238;
+  --color-secondary: #455a64;
+  --color-accent: #ff5252;
+  --color-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --color-surface: #fff;
+  --color-border: #b0bec5;
+  --color-text: #263238;
+  --color-text-light: #fff;
+  --color-muted: #ececec;
+  --font-main: "Segoe UI", "Roboto", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --shadow-sm: 0 2px 8px rgba(38, 50, 56, 0.1);
+  --shadow-md: 0 4px 20px rgba(38, 50, 56, 0.15);
+  --shadow-lg: 0 10px 40px rgba(38, 50, 56, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+body {
+  background: var(--color-bg);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-main);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+button {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+}
+
+button:focus {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 2px solid var(--color-border);
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(69, 90, 100, 0.1);
+}
+
+router-outlet+* {
+  display: block;
+  min-height: calc(100vh - 2rem);
+  padding: 1rem;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(38, 50, 56, 0.1);
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  text-decoration: none;
+}
+
+.btn:focus {
+  outline: 2px solid rgba(69, 90, 100, 0.12);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.btn-primary:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+.btn-accent:hover {
+  background: #ff6b6b;
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+}
+
+.btn-ghost:hover {
+  background: var(--color-muted);
+}
+
+.btn-danger {
+  background: #ff5252;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #ff1744;
+  transform: scale(1.03);
+}
+
+.btn-icon {
+  padding: 0.5rem;
+  width: 48px;
+  height: 48px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 6px;
+}

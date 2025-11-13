@@ -1,0 +1,49 @@
+<div class="hero-detail-container page-container">
+  <ng-container *ngIf="hero; else notFound">
+    <div class="hero-card" *ngIf="!isEditing">
+      <div class="hero-id-badge">Heroe #{{ hero.id }}</div>
+      <h2>{{ hero.name }}</h2>
+      <div class="hero-info">
+        <div class="hero-power">
+          <strong>Superboterea:</strong>
+          {{ hero.power }}
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="edit-button btn btn-accent" (click)="startEdit()">Editatu</button>
+      </div>
+    </div>
+
+    <div class="hero-edit-form" *ngIf="isEditing">
+      <div class="hero-id-badge">Heroe #{{ hero.id }} - Editatzen</div>
+      <form (ngSubmit)="saveEdit()" #editForm="ngForm">
+        <label>
+          Izena:
+          <input name="editName" [(ngModel)]="editName" required placeholder="Heroearen izena" autocomplete="off" />
+        </label>
+        <label>
+          Superboterea:
+          <input name="editPower" [(ngModel)]="editPower" required placeholder="Heroearen boterea" autocomplete="off" />
+        </label>
+        <div class="edit-actions">
+          <button type="button" (click)="cancelEdit()" class="cancel-button btn btn-ghost">
+            Ezeztatu
+          </button>
+          <button type="submit" [disabled]="!editName || !editPower" class="save-button btn btn-accent">
+            Gorde
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <a routerLink="/heroes" class="back-button">Zerrendara Bueltatu</a>
+  </ng-container>
+
+  <ng-template #notFound>
+    <div class="not-found-container">
+      <h2>Heroe ez da aurkitu</h2>
+      <p>Bilatzen ari zaren heroea ez da existitzen</p>
+      <a routerLink="/heroes" class="back-button">Zerrendara Bueltatu</a>
+    </div>
+  </ng-template>
+</div>

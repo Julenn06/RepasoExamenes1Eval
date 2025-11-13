@@ -1,0 +1,131 @@
+@if (house) {
+<div class="house-detail-container">
+  <button class="btn-back" (click)="goBack()">← Volver</button>
+  <button class="btn-back" (click)="updateHouse(house)">Editar</button>
+  
+  <div class="house-detail">
+    <h1>{{ house.name }}</h1>
+    
+    @if (house.picture) {
+    <div class="house-image">
+      <img [src]="house.picture" [alt]="house.name">
+    </div>
+    }
+    
+    <div class="house-info">
+      <div class="location-info">
+        <h3>Ubicación</h3>
+        <p><strong>Ciudad:</strong> {{ house.location.city }}</p>
+        <p><strong>Dirección:</strong> {{ house.location.address }}</p>
+        <p><strong>Coordenadas:</strong> {{ house.location.lat }}, {{ house.location.long }}</p>
+      </div>
+      
+      <div class="property-info">
+        <h3>Detalles de la propiedad</h3>
+        <p><strong>Tipo:</strong> {{ house.propertyType }}</p>
+        
+        <div class="price-info">
+          @if (house.isForSale) {
+          <div class="sale-price">
+            <h4>En Venta</h4>
+            <p class="price">{{ house.salePrice | number }}€</p>
+          </div>
+          }
+          
+          @if (house.isForRent) {
+          <div class="rent-price">
+            <h4>En Alquiler</h4>
+            <p class="price">{{ house.rentPrice | number }}€/mes</p>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulario de Edición -->
+  <div class="edit-form">
+    <h3>Editar Propiedad</h3>
+    
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" [(ngModel)]="house.name" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="city">Ciudad:</label>
+      <input type="text" id="city" [(ngModel)]="house.location.city" class="form-input">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Dirección:</label>
+      <input type="text" id="address" [(ngModel)]="house.location.address" class="form-input">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lat">Latitud:</label>
+        <input type="number" id="lat" [(ngModel)]="house.location.lat" class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label for="long">Longitud:</label>
+        <input type="number" id="long" [(ngModel)]="house.location.long" class="form-input">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="propertyType">Tipo de Propiedad:</label>
+      <select id="propertyType" [(ngModel)]="house.propertyType" class="form-input">
+        <option value="APARTMENT">Apartamento</option>
+        <option value="HOUSE">Casa</option>
+        <option value="DUPLEX">Dúplex</option>
+        <option value="STUDIO">Estudio</option>
+        <option value="VILLA">Villa</option>
+        <option value="COMMERCIAL">Comercial</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="isForSale" [(ngModel)]="house.isForSale">
+        <label for="isForSale">En Venta</label>
+      </div>
+      
+      @if (house.isForSale) {
+      <div class="form-group">
+        <label for="salePrice">Precio de Venta (€):</label>
+        <input type="number" id="salePrice" [(ngModel)]="house.salePrice" class="form-input">
+      </div>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="isForRent" [(ngModel)]="house.isForRent">
+        <label for="isForRent">En Alquiler</label>
+      </div>
+
+      @if (house.isForRent) {
+      <div class="form-group">
+        <label for="rentPrice">Precio de Alquiler (€/mes):</label>
+        <input type="number" id="rentPrice" [(ngModel)]="house.rentPrice" class="form-input">
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="picture">URL de Imagen:</label>
+      <input type="text" id="picture" [(ngModel)]="house.picture" class="form-input">
+    </div>
+
+    <button class="btn-edit" (click)="updateHouse(house)">Guardar Cambios</button>
+  </div>
+</div> 
+}
+
+@if (!house) {
+<div class="loading">
+  <p>Cargando detalles de la propiedad...</p>
+</div>
+}

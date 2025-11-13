@@ -1,0 +1,43 @@
+<div class="heroes-page-container page-container">
+  <div class="heroes-header">
+    <h1>Heroes Kudeaketa</h1>
+    <button class="add-hero-btn btn btn-accent" (click)="showAddHero = true">
+      Heroe Berria Gehitu
+    </button>
+  </div>
+
+  <div class="top-heroes-container">
+    <ul class="all-heroes-list">
+      <li *ngFor="let hero of allHeroes; trackBy: trackById">
+        <span class="hero-id">{{ hero.id }}</span>
+        <a class="all-hero-btn" [routerLink]="['/hero', hero.id]">{{ hero.name }}</a>
+        <button class="delete-btn btn btn-icon btn-danger" (click)="deleteHero(hero.id)" title="Eliminar heroe">
+          ×
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="modal-backdrop" *ngIf="showAddHero">
+    <div class="modal">
+      <h3>Heroe Berria Sortu</h3>
+      <form (ngSubmit)="submitAddHero()" #heroForm="ngForm">
+        <label>
+          Heroearen Izena:
+          <input name="name" [(ngModel)]="newHeroName" required placeholder="Ej: Spider-Man" autocomplete="off" />
+        </label>
+        <label>
+          Superboterea:
+          <input name="power" [(ngModel)]="newHeroPower" required placeholder="Ej: Telarañas y agilidad"
+            autocomplete="off" />
+        </label>
+        <div class="modal-actions">
+          <button type="button" (click)="closeAddHero()">Itxi</button>
+          <button type="submit" [disabled]="!newHeroName || !newHeroPower">
+            Heroe Sortu
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

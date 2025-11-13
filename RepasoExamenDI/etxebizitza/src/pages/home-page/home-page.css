@@ -1,0 +1,102 @@
+/* Contenedor general */
+.houses-container, .selling-container {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Bloque de todas las casas */
+.houses-container {
+  background-color: #f8f9fa;
+  border-left: 4px solid #007bff;
+}
+
+.houses-container::before {
+  content: "TODAS LAS CASAS";
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Bloque de casas en venta */
+.selling-container {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+}
+
+.selling-container::before {
+  content: "CASAS EN VENTA";
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #856404;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Estilos para cada casa */
+.house-item {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.house-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.house-number {
+  font-size: 0.9em;
+  color: #6c757d;
+  font-weight: bold;
+}
+
+.house-name {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #343a40;
+  margin: 8px 0;
+}
+
+.house-location {
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.house-location p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #495057;
+}
+
+.house-details {
+  border-top: 1px solid #dee2e6;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.house-details p {
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+/* Precios destacados */
+.house-details p:contains("Precio") {
+  color: #28a745;
+  font-weight: bold;
+  background-color: #d4edda;
+  padding: 5px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}

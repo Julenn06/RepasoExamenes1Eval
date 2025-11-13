@@ -1,0 +1,243 @@
+{
+  "property": [
+    {
+      "id": "2",
+      "name": "Casa unifamiliar",
+      "location": {
+        "city": "Getxo",
+        "address": "Calle Algorta 15",
+        "lat": 43.3553,
+        "long": -3.0122
+      },
+      "propertyType": "detached",
+      "isForSale": true,
+      "salePrice": 130000,
+      "isForRent": false,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400"
+    },
+    {
+      "id": "3",
+      "name": "Dúplex con terraza",
+      "location": {
+        "city": "Bilbao",
+        "address": "Casco Viejo 23",
+        "lat": 43.2564,
+        "long": -2.9234
+      },
+      "propertyType": "duplex",
+      "isForSale": true,
+      "salePrice": "480000",
+      "isForRent": true,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400"
+    },
+    {
+      "id": "4",
+      "name": "Ático con vistas al mar",
+      "location": {
+        "city": "San Sebastián",
+        "address": "Paseo de la Concha 12",
+        "lat": 43.3183,
+        "long": -1.9812
+      },
+      "propertyType": "penthouse",
+      "isForSale": true,
+      "salePrice": "850000",
+      "isForRent": false,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400"
+    },
+    {
+      "id": "5",
+      "name": "Casa adosada en Leioa",
+      "location": {
+        "city": "Leioa",
+        "address": "Barrio Artaza 8",
+        "lat": 43.3274,
+        "long": -2.9841
+      },
+      "propertyType": "townhouse",
+      "isForSale": false,
+      "salePrice": "0",
+      "isForRent": true,
+      "rentPrice": 12000,
+      "picture": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400"
+    },
+    {
+      "id": "6",
+      "name": "Estudio en zona universitaria",
+      "location": {
+        "city": "Bilbao",
+        "address": "Deusto 67",
+        "lat": 43.2722,
+        "long": -2.9444
+      },
+      "propertyType": "studio",
+      "isForSale": false,
+      "salePrice": "0",
+      "isForRent": true,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400"
+    },
+    {
+      "id": "8",
+      "name": "Apartamento frente al puerto",
+      "location": {
+        "city": "Bermeo",
+        "address": "Puerto Pesquero 3",
+        "lat": 43.4208,
+        "long": -2.7236
+      },
+      "propertyType": "apartment",
+      "isForSale": true,
+      "salePrice": "195000",
+      "isForRent": true,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400"
+    },
+    {
+      "id": "10",
+      "name": "Loft industrial en Abandoibarra",
+      "location": {
+        "city": "Bilbao",
+        "address": "Abandoibarra 15",
+        "lat": 43.2688,
+        "long": -2.9378
+      },
+      "propertyType": "VILLA",
+      "isForSale": false,
+      "salePrice": "0",
+      "isForRent": true,
+      "picture": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400"
+    },
+    {
+      "id": "11",
+      "name": "Caserío renovado en Mungia",
+      "location": {
+        "city": "Mungia",
+        "address": "Barrio Goikoetxe 12",
+        "lat": 43.3564,
+        "long": -2.8456
+      },
+      "propertyType": "farmhouse",
+      "isForSale": true,
+      "salePrice": "420000",
+      "isForRent": false,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400"
+    },
+    {
+      "id": "12",
+      "name": "Piso con balcón en Indautxu",
+      "location": {
+        "city": "Bilbao",
+        "address": "Calle Elcano 28",
+        "lat": 43.2581,
+        "long": -2.9301
+      },
+      "propertyType": "apartment",
+      "isForSale": true,
+      "salePrice": "298000",
+      "isForRent": true,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400"
+    },
+    {
+      "id": "13",
+      "name": "Casa con jardín en Erandio",
+      "location": {
+        "city": "Erandio",
+        "address": "Calle Zubiaur 45",
+        "lat": 43.3092,
+        "long": -2.9567
+      },
+      "propertyType": "detached",
+      "isForSale": false,
+      "salePrice": "0",
+      "isForRent": true,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400"
+    },
+    {
+      "id": "14",
+      "name": "Apartamento en primera línea de playa",
+      "location": {
+        "city": "Sopelana",
+        "address": "Playa de Arriatera 7",
+        "lat": 43.3831,
+        "long": -2.9889
+      },
+      "propertyType": "apartment",
+      "isForSale": true,
+      "salePrice": "565000",
+      "isForRent": false,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1520637836862-4d197d17c43a?w=400"
+    },
+    {
+      "id": "15",
+      "name": "Local comercial en Areeta",
+      "location": {
+        "city": "Getxo",
+        "address": "Calle Mayor 134",
+        "lat": 43.3425,
+        "long": -3.0089
+      },
+      "propertyType": "commercial",
+      "isForSale": true,
+      "salePrice": "175000",
+      "isForRent": true,
+      "rentPrice": "0",
+      "picture": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400"
+    },
+    {
+      "id": "16",
+      "name": "HOLI",
+      "location": {
+        "city": "aaa",
+        "address": "asdasd",
+        "lat": 121312,
+        "long": 34312
+      },
+      "propertyType": "garaje_plot",
+      "isForSale": true,
+      "salePrice": 150000,
+      "isForRent": true,
+      "rentPrice": 1200,
+      "picture": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.zonasrurales.com%2Ffotos_alojamientos%2F4179_casaruralerdikoetxe_77365.jpg&f=1&nofb=1&ipt=3a2fff849a54c23faed345998003d8443e62efde8746af944ebcd7fc6d5b4434"
+    },
+    {
+      "id": "16",
+      "name": "Precio Justo",
+      "location": {
+        "city": "Aeeee",
+        "address": "asdasd",
+        "lat": 1231234,
+        "long": 1231243
+      },
+      "propertyType": "detached",
+      "isForSale": false,
+      "salePrice": "0",
+      "isForRent": true,
+      "rentPrice": 1450,
+      "picture": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg4.idealista.com%2Fblur%2FWEB_LISTING-M%2F0%2Fid.pro.es.image.master%2F5e%2F3a%2F8b%2F1214335025.jpg&f=1&nofb=1&ipt=1be914d8062eee25094a039b295e810ae7c8a2ae780541965deedb7f05282599"
+    },
+    {
+      "id": "16",
+      "name": "ASDASFDA",
+      "location": {
+        "city": "1231",
+        "address": "3443",
+        "lat": 213123,
+        "long": 12321
+      },
+      "propertyType": "office",
+      "isForSale": true,
+      "salePrice": 156300,
+      "isForRent": false,
+      "rentPrice": "0",
+      "picture": ""
+    }
+  ]
+}

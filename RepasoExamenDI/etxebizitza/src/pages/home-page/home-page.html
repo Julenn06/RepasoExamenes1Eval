@@ -1,0 +1,59 @@
+<header>
+    <a [routerLink]="['/creation']">+ Add</a>
+    
+    <!-- Selector de tipos de casa -->
+    <div class="filter-container">
+        <label for="houseTypeSelect">Filtrar por tipo:</label>
+        <select 
+            id="houseTypeSelect" 
+            [(ngModel)]="selectedHouseType" 
+            (change)="onHouseTypeChange()"
+            class="house-type-selector"
+        >
+            <option value="ALL">Todos los tipos</option>
+            @for (type of houseTypes; track type) {
+                <option [value]="type">{{ type }}</option>
+            }
+        </select>
+    </div>
+</header>
+
+<div class="houses-container">
+    @for (house of houses; track house.id) {
+        <div class="house-item" style="cursor: pointer;" [routerLink]="['/house', house.id]">
+            <div class="house-number">{{ house.id }} </div>
+            <button class="btnDelete" (click)="deleteHouse(house.id); $event.stopPropagation()">X</button>
+
+            <div class="house-name">{{ house.name }}</div>
+            <div class="house-location">
+                <p>Ciudad: {{house.location.city}} </p>
+                <p>Dirección: {{ house.location.address }}</p>
+                <p>Coordenadas: {{ house.location.lat }}, {{ house.location.long }}</p>
+            </div>
+            <div class="house-details">
+                <p>Tipo: {{ house.propertyType }}</p>
+                @if (house.isForSale) {
+                    <p>Precio venta: {{ house.salePrice }}€</p>
+                }
+                @if (house.isForRent) {
+                    <p>Precio alquiler: {{ house.rentPrice }}€/mes</p>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<div class="selling-container">
+    @for (sellingHouse of selling; track sellingHouse.id) {
+        <div class="selling-item">
+            <div class="selling-number">{{ sellingHouse.id }}</div>
+            <div class="selling-name">{{ sellingHouse.name }}</div>
+            <div class="selling-location">
+                <p>Ciudad: {{sellingHouse.location.city}} </p>
+                <p>Dirección: {{ sellingHouse.location.address }}</p>
+                <p>Coordenadas: {{ sellingHouse.location.lat }}, {{ sellingHouse.location.long }}</p>
+            </div>
+            <p>Precio alquiler: {{ sellingHouse.rentPrice }}€/mes</p>
+        </div>
+    }
+</div>
